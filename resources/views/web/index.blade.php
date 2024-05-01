@@ -18,7 +18,7 @@
 
             <div class="col-md-3 text-end">
                 <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Registrarse rueba2</button>
+                <button type="button" class="btn btn-primary">Registrarse prueba2</button>
             </div>
         </header>
     </div>
