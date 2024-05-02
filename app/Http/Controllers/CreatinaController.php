@@ -33,7 +33,7 @@ class CreatinaController extends Controller
         $creatina = Creatina::findOrFail($id);
         $creatina->opcion = $request->opcion;
 
-        $prod = $creatina->producto()->first();
+        $prod = $creatina->producto;
         $prod->nombre = $request->nombre;
         $prod->precio = $request->precio;
         $prod->imagen = $request->imagen;
