@@ -3,64 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creatina;
-use App\Http\Requests\StoreCreatinaRequest;
-use App\Http\Requests\UpdateCreatinaRequest;
+use App\Models\Producto;
+use Illuminate\Http\Request;
 
 class CreatinaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function create(Request $request) {
+        $prod_attr = [];
+        $prod_attr[0] = $request->nombre;
+        $prod_attr[1] = $request->precio;
+        $prod_attr[2] = $request->imagen;
+        $prod = Producto::create($prod_attr);
+
+        $prot_attr = [];
+        $prot_attr[0] = $prod->opcion;
+        $proteina = Creatina::create($prot_attr);
+
+        $prod->proteina()->save($proteina);
+        $prod->save();
+        $proteina->save();
+
+        return back() -> with('mensaje', 'Creatina agregada exitosamente.');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function read($id) {
+        $creatina = Creatina::findOrFail($id);
+        return view('??', compact('creatina'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCreatinaRequest $request)
-    {
-        //
+    public function update(Request $request, $id) {
+        $prod_attr = [];
+        $prod_attr[0] = $request->nombre;
+        $prod_attr[1] = $request->precio;
+        $prod_attr[2] = $request->imagen;
+
+        $prot_attr = [];
+        $prot_attr[0] = $request->opcion;
+        $prot = Creatina::findOrFail( $id );
+        $prot->update( $prot_attr );
+
+        $prod = $prot->producto();
+        $prod->update( $prod_attr );
+
+        return back() -> with('mensaje','Creatina actualizada exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Creatina $creatina)
-    {
-        //
+    public function delete($id) {
+        Creatina::findOrFail($id)->delete();
+        return back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Creatina $creatina)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCreatinaRequest $request, Creatina $creatina)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Creatina $creatina)
-    {
-        //
+    public function all() {
+        $creatinas = Creatina::all();
+        return view('??', compact('creatinas'));
     }
 }
