@@ -53,4 +53,9 @@ class User extends Authenticatable
     public function administrador(){
         return $this->hasOne('App\Models\Administrador');
     }
+
+    public function isAdmin(): bool
+    {
+        return (bool) $this->admin;
+    }
 }
