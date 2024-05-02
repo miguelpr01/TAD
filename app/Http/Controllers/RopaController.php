@@ -34,7 +34,7 @@ class RopaController extends Controller
         $ropa->talla = $request->talla;
         $ropa->color = $request->color;
         
-        $prod = $ropa->producto()->first();
+        $prod = $ropa->producto;
         $prod->nombre = $request->nombre;
         $prod->precio = $request->precio;
         $prod->imagen = $request->imagen;

@@ -35,7 +35,7 @@ class ProteinaController extends Controller
         $prot->sabor = $request->sabor;
         $prot->cantidad = $request->cantidad;
 
-        $prod = $prot->producto()->first();
+        $prod = $prot->producto;
         $prod->nombre = $request->nombre;
         $prod->precio = $request->precio;
         $prod->imagen = $request->imagen;

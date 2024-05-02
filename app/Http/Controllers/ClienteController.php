@@ -41,7 +41,7 @@ class ClienteController extends Controller
         $cliente->telefono = $request->telefono;
         $cliente->fechaNacimiento = $request->fechaNacimiento;
 
-        $usuario = $cliente->user()->first();
+        $usuario = $cliente->user;
         $usuario->nombre = $request->nombre;
         $usuario->email = $request->email;
         $usuario->apellidos = $request->apellidos;
