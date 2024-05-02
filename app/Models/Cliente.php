@@ -22,7 +22,7 @@ class Cliente extends Model
 
     // Relación 1:1 Cliente->Dirección
     public function direccion(){
-        return $this->belongsTo('App\Models\Direccion');
+        return $this->hasOne('App\Models\Direccion');
     }
 
     // Relacion 1:1 Producto->Carrito
