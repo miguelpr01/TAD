@@ -1,25 +1,106 @@
 @extends('template.main')
+
 @section('title', 'Naturfit')
 
 @section('contenido')
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img class="logo" src="{{ url('storage/images/logoweb/logo_web.png') }}"  alt="">
-            </a>
 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-            </ul>
-
-            <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Registro</button>
+    {{-- Header Start --}}
+    <section class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
+                </div>
+                <div class="col-md-8 d-flex justify-content-end">
+                    <a href="#" class="btn btn-success me-2">Iniciar sesión</a>
+                    <a href="#" class="btn btn-success">Registro</a>
+                </div>
             </div>
-        </header>
-    </div>
+        </div>
+    </section>
+    {{-- Header End --}}
+
+
+    {{-- Nav Start --}}
+    <section class="btn-paginas">
+        <div class="container-xl">
+            <div class="row justify-content-center">
+                <div class="col text-center">
+                    <a href="" class="btn btn-success">Proteina</a>
+                </div>
+                <div class="col text-center">
+                    <a href="" class="btn btn-success">Creatina</a>
+                </div>
+                <div class="col text-center">
+                    <a href="" class="btn btn-success">Ropa</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Nav End --}}
+
+
+    {{-- Carousel Start --}}
+    <section class="section-carousel">
+        <div class="container-xl">
+            <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ url('storage/images/carousel_index/carousel1.jpg') }}" class="d-block w-100 img-fluid"
+                            alt="Imagen Carousel 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url('storage/images/carousel_index/carousel2.jpg') }}" class="d-block w-100 img-fluid"
+                            alt="Imagen Carousel 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url('storage/images/carousel_index/carousel3.jpg') }}" class="d-block w-100 img-fluid"
+                            alt="Imagen Carousel 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    {{-- Carousel End --}}
+
+    {{-- Sección de la lista de productos Start --}}
+    <section class="section-lista-productos">
+        <div class="container">
+            <h1 class="text-center mb-5">Lista de productos</h1>
+            <div class="row">
+                @foreach ($productos as $categoria)
+                    @foreach ($categoria as $producto)
+                        @foreach ($producto as $elemento)
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100 shadow-sm">
+                                    <img src="{{ $elemento->producto->imagen }}"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            {{ $elemento->producto->nombre }}</h5>
+                                        <p class="card-text">
+                                            {{ $elemento->producto->precio }}</p>
+                                        <a href="#"
+                                            class="btn btn-primary btn-block">Comprar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        @endforeach
+                    @endforeach
+                @endforeach
+                </div>
+            </div>
+    </section>
+    {{-- Sección de la lista de productos End --}}
+
 @endsection
