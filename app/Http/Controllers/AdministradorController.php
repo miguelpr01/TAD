@@ -3,64 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrador;
-use App\Http\Requests\StoreAdministradorRequest;
-use App\Http\Requests\UpdateAdministradorRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class AdministradorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function create(Request $request) {
+        $usuario = new User();
+        $usuario->nombre = $request->nombre;
+        $usuario->email = $request->email;
+        $usuario->apellidos = $request->apellidos;
+        $usuario->password = $request->password;
+        $usuario->admin = false;
+
+        $admin = new Administrador();
+        $admin->adminname = $request->adminname;
+
+        $usuario->administrador()->save($admin);
+        $usuario->save();
+        $admin->save();
+
+        return back()->with('message', 'Admin creado exitosamente');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function read($id) {
+        $admin = Administrador::findOrFail($id);
+        return view('??', compact('admin'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAdministradorRequest $request)
-    {
-        //
-    }
+    public function update(Request $request, $id) {
+        $admin = Administrador::findOrFail($id);
+        $admin->adminname = $request->adminname;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Administrador $administrador)
-    {
-        //
-    }
+        $usuario = $admin->user;
+        $usuario->nombre = $request->nombre;
+        $usuario->email = $request->email;
+        $usuario->apellidos = $request->apellidos;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Administrador $administrador)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAdministradorRequest $request, Administrador $administrador)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Administrador $administrador)
-    {
-        //
+        $admin->save();
+        $usuario->save();
     }
 }
