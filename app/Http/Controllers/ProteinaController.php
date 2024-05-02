@@ -12,7 +12,8 @@ class ProteinaController extends Controller
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
-        $producto->imagen = $request->imagen;
+        //TODO: imagen
+        $producto->imagen = '';
 
         $proteina = new Proteina();
         $proteina->sabor = $request->sabor;

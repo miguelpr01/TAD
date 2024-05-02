@@ -8,5 +8,7 @@ use App\Http\Requests\UpdateProductoRequest;
 
 class ProductoController extends Controller
 {
-    // ermmmmmmmmm
+    public function create() {
+        return view('admin/nuevo_producto');
+    }
 }
