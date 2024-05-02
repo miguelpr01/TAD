@@ -3,64 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ropa;
-use App\Http\Requests\StoreRopaRequest;
-use App\Http\Requests\UpdateRopaRequest;
+use Illuminate\Http\Request;
 
 class RopaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function create(Request $request) {
+        Ropa::create($request->all());
+        return back() -> with('mensaje', 'Proteina agregada exitosamente.');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function read($id) {
+        $ropa = Ropa::findOrFail($id);
+        return view('??', compact('ropa'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreRopaRequest $request)
-    {
-        //
+    public function update(Request $request, $id) {
+        Ropa::findOrFail($id)->update($request->all());
+        return back() -> with('mensaje','Proteina actualizada exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Ropa $ropa)
-    {
-        //
+    public function delete($id) {
+        Ropa::findOrFail($id)->delete();
+        return back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ropa $ropa)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateRopaRequest $request, Ropa $ropa)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Ropa $ropa)
-    {
-        //
+    public function all() {
+        $ropas = Ropa::all();
+        return view('??', compact('ropas'));
     }
 }
