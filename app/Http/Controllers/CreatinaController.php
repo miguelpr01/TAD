@@ -9,19 +9,17 @@ use Illuminate\Http\Request;
 class CreatinaController extends Controller
 {
     public function create(Request $request) {
-        $prod_attr = [];
-        $prod_attr[0] = $request->nombre;
-        $prod_attr[1] = $request->precio;
-        $prod_attr[2] = $request->imagen;
-        $prod = Producto::create($prod_attr);
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->imagen = $request->imagen;
 
-        $prot_attr = [];
-        $prot_attr[0] = $prod->opcion;
-        $proteina = Creatina::create($prot_attr);
+        $creatina = new Creatina();
+        $creatina->opcion = $request->opcion;
 
-        $prod->proteina()->save($proteina);
-        $prod->save();
-        $proteina->save();
+        $producto->creatina()->save($creatina);
+        $producto->save();
+        $creatina->save();
 
         return back() -> with('mensaje', 'Creatina agregada exitosamente.');
     }
@@ -32,18 +30,16 @@ class CreatinaController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $prod_attr = [];
-        $prod_attr[0] = $request->nombre;
-        $prod_attr[1] = $request->precio;
-        $prod_attr[2] = $request->imagen;
+        $creatina = Creatina::findOrFail($id);
+        $creatina->opcion = $request->opcion;
 
-        $prot_attr = [];
-        $prot_attr[0] = $request->opcion;
-        $prot = Creatina::findOrFail( $id );
-        $prot->update( $prot_attr );
+        $prod = $creatina->producto()->first();
+        $prod->nombre = $request->nombre;
+        $prod->precio = $request->precio;
+        $prod->imagen = $request->imagen;
 
-        $prod = $prot->producto();
-        $prod->update( $prod_attr );
+        $prod->save();
+        $creatina->save();
 
         return back() -> with('mensaje','Creatina actualizada exitosamente.');
     }
