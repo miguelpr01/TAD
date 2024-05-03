@@ -1,8 +1,28 @@
-@extends('template.main')
+@extends('template.prueba')
 
 @section('titulo', 'Login')
 
 @section('contenido')
+<section class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <li class="nav-item justify-content-center d-flex"> 
+                            <!-- Contenido para usuarios no autenticados -->
+                            <form action="{{ route('login') }}">
+                                <button type="submit" class="btn btn-success me-2">Login</button>
+                            </form>
+                            <form action="{{ route('register') }}">
+                                <button type="submit" class="btn btn-success">Registro</button>
+                            </form>
+                        </li>
+                    </div>
+                </div>
+            </div>
+    </section>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

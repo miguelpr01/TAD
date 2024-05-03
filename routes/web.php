@@ -44,3 +44,6 @@ Route::get('/ropa/{id?}', [RopaController::class, 'read'])->name('ropa.read');
 Route::get('/proteina', [ProteinaController::class, 'all'])->name('proteina.all');
 Route::get('/creatina', [CreatinaController::class, 'all'])->name('creatina.all');
 Route::get('/ropa', [RopaController::class, 'all'])->name('ropa.all');
+Route::get('redirect_login', [LoginController::class, 'redirect_login'])->name('redirectlogin');
+Route::get('redirect_register', [LoginController::class, 'redirect_register'])->name('redirectregister');
+Route::get('all', [ClienteController::class, 'all'])->name('verclientes');

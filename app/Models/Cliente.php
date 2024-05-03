@@ -13,6 +13,7 @@ class Cliente extends Model
         'username',
         'telefono',
         'fechaNacimiento',
+        'user_id',
     ];
 
     // Relación 1:1 inversa Cliente<-Usuario

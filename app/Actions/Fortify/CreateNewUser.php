@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -18,9 +19,13 @@ class CreateNewUser implements CreatesNewUsers
      * @param  array<string, string>  $input
      */
     public function create(array $input): User
-    {
+    {     
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:255'],
+            'apellidos' => ['required', 'string'],
+            'username' => ['required', 'string'],
+            'telefono' => ['required', 'string', 'regex:/[6|7][0-9]{8}/'],
+            'fechaNacimiento' => ['required'],
             'email' => [
                 'required',
                 'string',
@@ -28,13 +33,23 @@ class CreateNewUser implements CreatesNewUsers
                 'max:255',
                 Rule::unique(User::class),
             ],
-            'contrasenya' => $this->passwordRules(),
+            'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
+        $user = User::create([
+            'nombre' => $input['nombre'],
+            'apellidos' => $input['apellidos'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $cliente = Cliente::create([
+            'username' => $input['username'],
+            'telefono' => $input['telefono'],
+            'fechaNacimiento' => $input['fechaNacimiento'],
+            'user_id' => $user->id
+        ]);
+
+        return $user;
     }
 }
