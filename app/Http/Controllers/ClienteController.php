@@ -32,7 +32,7 @@ class ClienteController extends Controller
 
     public function read($id) {
         $cliente = Cliente::findOrFail($id);
-        return view('??', compact('cliente'));
+        return view('web.clientes', compact('cliente'));
     }
     
     public function update(Request $request, $id) {
@@ -60,6 +60,6 @@ class ClienteController extends Controller
 
     public function all() {
         $clientes = Cliente::all();
-        return view('??', compact('clientes'));
+        return view('web.clientes', compact('clientes'));
     }
 }

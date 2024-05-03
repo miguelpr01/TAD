@@ -1,4 +1,4 @@
-@extends('auth.template')
+@extends('web.index')
 
 @section('content')
 <div class="container">
