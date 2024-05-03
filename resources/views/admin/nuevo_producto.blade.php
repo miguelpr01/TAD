@@ -1,7 +1,11 @@
-@extends('template.main')
-@section('title', 'Naturfit')
-
-@section('contenido')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <div>
     <script>
         function productTypeChange(event) {
@@ -16,10 +20,19 @@
                     ropa.style.display = 'none';
                     break;
                 case 'creatina':
+                    prot.style.display = 'none';
+                    creat.style.display = 'none';
+                    ropa.style.display = 'none';
                     break;
                 case 'ropa':
+                    prot.style.display = 'none';
+                    creat.style.display = 'none';
+                    ropa.style.display = 'none';
                     break;
                 default:
+                    prot.style.display = 'none';
+                    creat.style.display = 'none';
+                    ropa.style.display = 'none';
                     console.log('AAAAAAAAAAAAA');
             }
         }
@@ -52,4 +65,6 @@
             <input type="submit" value="Crear proteina">
         </form>
 </div>
-@endsection
+
+</body>
+</html>
