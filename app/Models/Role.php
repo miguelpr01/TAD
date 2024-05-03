@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EstadoPedido extends Model
+class Role extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'estado',
+        'rol',
     ];
 
-    public function pedido(){
-        return $this->belongsTo('App\Models\Pedido');
+    public function users(){
+        return $this->hasMany('App\Models\User');
     }
 }
+

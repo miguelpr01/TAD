@@ -22,6 +22,8 @@ class User extends Authenticatable
         'apellidos',
         'email',
         'password',
+        'telefono',
+        'fechaNacimiento'
     ];
 
     /**
@@ -30,7 +32,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'contrasenya',
+        'password',
         'remember_token',
     ];
 
@@ -44,13 +46,19 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // Relación 1:1 Usuario->Cliente
-    public function cliente(){
-        return $this->hasOne('App\Models\Cliente');
+    public function direccion(){
+        return $this->hasMany('App\Models\Direccion');
     }
 
-    // Relación 1:1 Usuario->Administrador
-    public function administrador(){
-        return $this->hasOne('App\Models\Administrador');
+    public function rol(){
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function carritocompra(){
+        return $this->hasOne('App\Models\CarritoCompra');
+    }
+
+    public function pedidos(){
+        return $this->hasMany('App\Models\Pedido');
     }
 }

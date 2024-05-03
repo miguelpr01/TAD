@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Direccion;
+use App\Models\Direccione;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DireccionSeeder extends Seeder
+class DireccioneSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Direccion::create([
+        Direccione::create([
             'calle' => 'Calle de la Rosa',
             'numero' => 7,
             'piso' => 2,
@@ -22,10 +22,10 @@ class DireccionSeeder extends Seeder
             'ciudad' => 'Madrid',
             'provincia' => 'Madrid',
             'pais' => 'España',
-            'cliente_id' => 1
+            'user_id' => 1,
         ]);
 
-        Direccion::create([
+        Direccione::create([
             'calle' => 'Avenida de la Constitución',
             'numero' => 45,
             'piso' => 3,
@@ -34,10 +34,10 @@ class DireccionSeeder extends Seeder
             'ciudad' => 'Sevilla',
             'provincia' => 'Sevilla',
             'pais' => 'España',
-            'cliente_id' => 2
+            'user_id' => 2
         ]);
 
-        Direccion::create([
+        Direccione::create([
             'calle' => 'Carrer de Sant Joan',
             'numero' => 12,
             'piso' => null,
@@ -46,7 +46,19 @@ class DireccionSeeder extends Seeder
             'ciudad' => 'Barcelona',
             'provincia' => 'Barcelona',
             'pais' => 'España',
-            'cliente_id' => 3
+            'user_id' => 3
+        ]);
+
+        Direccione::create([
+            'calle' => 'San Jacinto',
+            'numero' => 10,
+            'piso' => null,
+            'puerta' => null,
+            'codPostal' => '41010',
+            'ciudad' => 'Sevilla',
+            'provincia' => 'Sevilla',
+            'pais' => 'España',
+            'user_id' => 4
         ]);
     }
 }
