@@ -18,6 +18,7 @@ class Direccione extends Model
         'ciudad',
         'provincia',
         'pais',
+        'user_id'
     ];
 
     // Relación 1:1 inversa Direccion<-Cliente

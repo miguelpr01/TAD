@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Direccione;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +21,8 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:255'],
+            'apellidos' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -28,13 +30,33 @@ class CreateNewUser implements CreatesNewUsers
                 'max:255',
                 Rule::unique(User::class),
             ],
-            'contrasenya' => $this->passwordRules(),
+            'password' => $this->passwordRules(),
+            'telefono' => ['required', 'regex:/[6|7][0-9]{8}/'],
+            'fechaNacimiento' => ['required'],
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
+        $user =  User::create([
+            'nombre' => $input['nombre'],
+            'apellidos' => $input['apellidos'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'telefono' => $input['telefono'],
+            'fechaNacimiento'=> $input['fechaNacimiento'],
+            'rol_id' => 2,
         ]);
+
+        $direccion = Direccione::create([
+            "calle"=>$input['calle'],
+            "numero"=>$input['numero'],
+            "piso"=>$input['piso'],
+            "puerta"=>$input['puerta'],
+            "codPostal"=>$input['codPostal'],
+            "ciudad"=>$input['ciudad'],
+            "provincia"=>$input['provincia'],
+            'pais' => $input['pais'],
+            'user_id' => $user->id,
+        ]);
+
+        return $user;
     }
 }

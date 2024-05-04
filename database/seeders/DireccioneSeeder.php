@@ -24,41 +24,5 @@ class DireccioneSeeder extends Seeder
             'pais' => 'España',
             'user_id' => 1,
         ]);
-
-        Direccione::create([
-            'calle' => 'Avenida de la Constitución',
-            'numero' => 45,
-            'piso' => 3,
-            'puerta' => 'B',
-            'codPostal' => '41001',
-            'ciudad' => 'Sevilla',
-            'provincia' => 'Sevilla',
-            'pais' => 'España',
-            'user_id' => 2
-        ]);
-
-        Direccione::create([
-            'calle' => 'Carrer de Sant Joan',
-            'numero' => 12,
-            'piso' => null,
-            'puerta' => null,
-            'codPostal' => '08003',
-            'ciudad' => 'Barcelona',
-            'provincia' => 'Barcelona',
-            'pais' => 'España',
-            'user_id' => 3
-        ]);
-
-        Direccione::create([
-            'calle' => 'San Jacinto',
-            'numero' => 10,
-            'piso' => null,
-            'puerta' => null,
-            'codPostal' => '41010',
-            'ciudad' => 'Sevilla',
-            'provincia' => 'Sevilla',
-            'pais' => 'España',
-            'user_id' => 4
-        ]);
     }
 }
