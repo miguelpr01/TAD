@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Direccione;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DireccioneSeeder extends Seeder
