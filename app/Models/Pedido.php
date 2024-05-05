@@ -10,9 +10,7 @@ class Pedido extends Model
     use HasFactory;
 
     protected $fillable = [
-        'numPedido',
         'fechaPedido',
-        'cantProducto',
         'estadoPedido',
         'direccionCliente',
     ];
@@ -22,7 +20,8 @@ class Pedido extends Model
     }
 
     public function producto(){
-        return $this->belongsTo('App\Models\Producto');
+        return $this->belongsToMany(Producto::class,'lineacompra','pedido_id','producto_id')
+        ->withPivot('cantidad');
     }
 
     public function user(){
