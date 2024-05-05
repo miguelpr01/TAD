@@ -8,9 +8,8 @@ use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Proteina;
 use App\Models\Ropa;
+use Illuminate\Http\Request;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
-use PhpParser\Node\Expr\Cast\Object_;
 
 class ProductoController extends Controller
 {
@@ -50,8 +49,12 @@ class ProductoController extends Controller
         return view('web.producto', compact('datos'));
     }
 
-    public function comprobar_autenticacion(){
-        return "Hola";
+    public function comprobarautenticacion(Request $request){
+         if(auth()->check()){
+           return $request->cantidad;
+         }else{
+             return back()->with("mensaje_error_autenticacion","El usuario no esta logado");
+         }
     }
 
     public function listaproteinas(){

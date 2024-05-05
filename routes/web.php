@@ -44,7 +44,10 @@ Route::get('editar_ropa/{id}', [RopaController::class, 'edit'])->name('editar_ro
 Route::put('confirmar_editar_ropa/{id}', [RopaController::class, 'update'])->name('confirmar_editar_ropa');
 
 Route::get('producto/{id}', [ProductoController::class,'seleccionarProducto'])->name('producto.seleccionarProducto');
-Route::get('producto_comprobar_autenticacion', [ProductoController::class,'comprobar_autenticacion'])->name('producto_comprobar_autenticacion');
+Route::post('producto_comprobarautenticacion', [ProductoController::class,'comprobarautenticacion'])->name('producto.comprobarautenticacion');
+Route::get('lista_proteinas', [ProductoController::class,'listaproteinas'])->name('producto.listaproteinas');
+Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->name('producto.listacreatinas');
+Route::get('lista_ropas', [ProductoController::class,'listaropas'])->name('producto.listaropas');
 
 Route::get('pedido/ya', [PedidoController::class, 'comprar_ya'])->name('pedido.comprar_ya');
 

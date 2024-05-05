@@ -90,7 +90,7 @@
                                 </ul>
                             @endif
                         @else
-                            <a href="{{ 'login' }}" class="btn btn-success me-2">Iniciar sesión</a>
+                            <a href="{{ '../login' }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="btn btn-success">Registro</a>
                             @endif
@@ -104,6 +104,11 @@
 
     {{-- Información de producto Start --}}
     <section>
+        @if (session('mensaje_error_autenticacion'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('mensaje_error_autenticacion') }}
+            </div>
+        @endif
         
         @php
             $producto = $datos['producto'];
@@ -116,7 +121,7 @@
                 <div class="col-md-6">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Nombre: </strong>{{ $producto->nombre }}</li>
-                        <li class="list-group-item" ><strong>Precio: </strong>{{ $producto->precio }}</li>
+                        <li class="list-group-item"><strong>Precio: </strong>{{ $producto->precio }}</li>
                         @if (isset($producto->proteina))
                         <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
                         <li class="list-group-item"><strong>Cantidad: </strong>{{ $producto->proteina->cantidad }}</li>
@@ -165,7 +170,7 @@
 
     {{-- Footer Start --}}
     <footer class="footer">
-        <div class="container">
+        <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
                     <p>Somos una tienda online de productos deportivos y de suplementación. Ofrecemos una amplia variedad de
