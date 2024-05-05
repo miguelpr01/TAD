@@ -104,6 +104,10 @@
 
     {{-- Información de producto Start --}}
     <section>
+        
+        @php
+            $producto = $datos['producto'];
+        @endphp
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 my-3">
@@ -123,17 +127,33 @@
                         </form>
                         <a href="">Añadir al carrito</a>
 
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
                         @elseif (isset($producto->creatina))
                         <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
-
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
                         @elseif(isset($producto->ropa))
                         <li class="list-group-item"><strong>Talla: </strong>{{ $producto->ropa->talla }}</li>
                         <li class="list-group-item"><strong>Color: </strong>{{ $producto->ropa->color }}</li>
-
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
                         @endif
+
+                        @if (session('mensaje'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('mensaje') }}
+                        </div>
+                        @endif
+
+                        <form action="{{route('pedido.comprar_ya')}}">
+                            @csrf
+                            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" name="cantidad" id="cantidad"><br/>
+                            <label for="direccion_id">Direccion de envío:</label>
+                            <select name="direccion_id" id="direccion_id">
+                                @foreach ($datos['usuario']->direccion as $direccion)
+                                    <option value="{{ $direccion->id }}">{{$direccion->__toString()}}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                        </form>
+                        
                     </ul>
                 </div>
             </div>

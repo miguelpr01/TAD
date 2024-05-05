@@ -3,6 +3,7 @@
 use App\Http\Controllers\CreatinaController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProteinaController;
 use App\Http\Controllers\RopaController;
@@ -44,6 +45,8 @@ Route::put('confirmar_editar_ropa/{id}', [RopaController::class, 'update'])->nam
 
 Route::get('producto/{id}', [ProductoController::class,'seleccionarProducto'])->name('producto.seleccionarProducto');
 Route::get('producto_comprobar_autenticacion', [ProductoController::class,'comprobar_autenticacion'])->name('producto_comprobar_autenticacion');
+
+Route::get('pedido/ya', [PedidoController::class, 'comprar_ya'])->name('pedido.comprar_ya');
 
 Route::get('ver_pedidos', [PedidoController::class, 'all'])->name('ver_pedidos');
 

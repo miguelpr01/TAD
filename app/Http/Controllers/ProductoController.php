@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Proteina;
 use App\Models\Ropa;
+use App\Models\User;
 use GuzzleHttp\Psr7\Request;
 use PhpParser\Node\Expr\Cast\Object_;
 
@@ -39,7 +40,14 @@ class ProductoController extends Controller
     public function seleccionarProducto($id)
     {
         $producto = Producto::findOrFail($id);
-        return view('web.producto', compact('producto'));
+        $idUser = auth()->user()->getAuthIdentifier();
+        $user = User::findOrFail($idUser);
+
+        $datos = [
+            'producto' => $producto,
+            'usuario' => $user
+        ];
+        return view('web.producto', compact('datos'));
     }
 
     public function comprobar_autenticacion(){
