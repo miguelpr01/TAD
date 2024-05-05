@@ -12,6 +12,7 @@ class Ropa extends Model
     protected $fillable = [
         'talla',
         'color',
+        'producto_id',
     ];
 
     // Relacion 1:1 inversa Ropa<-Producto

@@ -7,8 +7,9 @@ body {
     padding: 0;
 }
 
+/* Seccion del Header Start */
 .header {
-    background-color: #86e786;
+    background-color: #074511;
     padding: 20px 0;
 }
 
@@ -21,69 +22,27 @@ body {
     background-color: #28a745;
     border-color: #28a745;
 }
-
-#sidebar {
-    width: 250px;
-    height: 100%;
-    position: fixed;
-    top: 80px;
-    left: 0;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    z-index: 1000;
-}
-
-.sidebar-nav {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar-item {
-    margin-bottom: 10px;
-}
-
-.sidebar-item a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-}
-
-.sidebar-item a:hover {
-    text-decoration: underline;
-}
-
-main {
-    margin-left: 250px;
-}
-
-.header .btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-}
 /* Seccion del Header End */
-
 
 /* Seccion de los botones Start */
 .btn-paginas {
     display: flex;
     justify-content: center;
     margin: 2rem auto;
-  }
+}
 
-
-  .btn-paginas .btn {
+.btn-paginas .btn {
     outline: none;
     margin: 0 1rem;
     padding: 10px 20px;
     transition: background-color 0.2s ease-in-out;
     background-color: #28a745;
     color: #fff;
-  }
+}
 
-  .btn-paginas .btn:hover {
+.btn-paginas .btn:hover {
     background-color: #34d05b;
-  }
+}
 /* Seccion de los botones End */
 
 /* Seccion del carrusel Start */
@@ -136,3 +95,39 @@ main {
     border-color: #0056b3;
 }
 /* Seccion de los productos End */
+
+/* Footer Start */
+.footer {
+    background-color: #074511;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer a {
+    color: #fff; 
+    text-decoration: none;
+}
+
+.footer .logo {
+    max-width: 160px;
+    height: auto;
+}
+
+.footer .redes-sociales {
+    margin-top: 20px;
+}
+
+.footer .redes-sociales li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.footer .redes-sociales a {
+    font-size: 24px;
+}
+
+.footer .copyright {
+    text-align: center;
+    margin-top: 20px;
+}
+/* Footer End */

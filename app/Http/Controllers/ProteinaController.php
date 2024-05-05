@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Proteina;
 use App\Models\Producto;
+use App\Models\Proteina;
+use App\Http\Requests\StoreProteinaRequest;
+use App\Http\Requests\UpdateProteinaRequest;
 use Illuminate\Http\Request;
 
 class ProteinaController extends Controller
@@ -12,39 +14,52 @@ class ProteinaController extends Controller
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
-        //TODO: imagen
-        $producto->imagen = '';
+        $producto->imagen = $request->imagen;
 
+        $producto->save();
+    
         $proteina = new Proteina();
         $proteina->sabor = $request->sabor;
         $proteina->cantidad = $request->cantidad;
-
+    
         $producto->proteina()->save($proteina);
-        $producto->save();
-        $proteina->save();
-
-        return back() -> with('mensaje', 'Proteina agregada exitosamente.');
-    }
+    
+        $proteinas = Proteina::all();
+        
+        $productos = [];
+        foreach ($proteinas as $proteina) {
+            $producto = Producto::find($proteina->producto_id);
+            $productos[$proteina->producto_id] = $producto;
+        }
+        
+        return redirect()->route('ver_proteinas')->with('mensaje', 'Proteina agregada');
+    }    
 
     public function read($id) {
         $proteina = Proteina::findOrFail($id);
         return view('??', compact('proteina'));
     }
 
+    public function edit($id)
+    {
+        $producto = Producto::findOrFail($id);
+        return view('productos.proteina.editar_proteina', compact('producto'));
+    }
+
     public function update(Request $request, $id) {
-        $prot = Proteina::findOrFail( $id );
-        $prot->sabor = $request->sabor;
-        $prot->cantidad = $request->cantidad;
+        $producto = Producto::findOrFail($id);
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->imagen = $request->imagen;
 
-        $prod = $prot->producto;
-        $prod->nombre = $request->nombre;
-        $prod->precio = $request->precio;
-        $prod->imagen = $request->imagen;
+        $proteina = Proteina::where('producto_id', $id)->firstOrFail();
+        $proteina->sabor = $request->sabor;
+        $proteina->cantidad = $request->cantidad;
 
-        $prot->save();
-        $prod->save();
+        $proteina->save();
+        $producto->save();
 
-        return back() -> with('mensaje','Proteina actualizada exitosamente.');
+        return redirect()->route('ver_proteinas')->with('mensaje', 'Proteina editada');
     }
 
     public function delete($id) {
@@ -54,6 +69,13 @@ class ProteinaController extends Controller
 
     public function all() {
         $proteinas = Proteina::all();
-        return view('??', compact('proteinas'));
+        
+        $productos = [];
+        foreach ($proteinas as $proteina) {
+            $producto = Producto::find($proteina->producto_id);
+            $productos[$proteina->producto_id] = $producto;
+        }
+        
+        return view('productos.proteina.proteina', compact('proteinas', 'productos'));
     }
 }
