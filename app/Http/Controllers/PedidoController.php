@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
+    public function all() {
+        $usuario_id = auth()->user()->id;
+        $pedidos = Pedido::where('user_id', $usuario_id)
+                    ->with('producto')
+                    ->get();
+
+        return view('web.pedido', compact('pedidos'));
+    }
+
     public function create(Request $request) {
         $pedido = new Pedido();
     }
@@ -29,6 +38,6 @@ class PedidoController extends Controller
         $user->save();
         $pedido->save();
 
-        return back()->with('success','aa');
+        return back()->with('mensaje','Pedido realizado exitosamente.');
     }
 }

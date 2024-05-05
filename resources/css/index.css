@@ -102,7 +102,11 @@ body {
 .footer {
     background-color: #074511;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px;
+    bottom:0;
+    flex-shrink: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer a {
@@ -110,13 +114,22 @@ body {
     text-decoration: none;
 }
 
-.footer .logo {
-    max-width: 160px;
-    height: auto;
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
 }
 
 .footer .redes-sociales {
     margin-top: 20px;
+}
+
+.footer .redes-sociales img{
+    width: 30px;
+    margin-right: 10px;
 }
 
 .footer .redes-sociales li {
@@ -143,4 +156,34 @@ body {
   }
 /* ----------     Página de ver producto End ---------------*/
 
+/* ----------     Página de ver lista de proteinas Start ---------------*/
+.titulo {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+
+/* ----------     Página de ver lista de proteinas Start ---------------*/
+.titulo {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+
+.seccion-lista-proteinas{
+    padding: 85px;
+}
+
+.seccion-lista-proteinas img{
+    max-width: 100px;
+}
+/* ----------     Página de ver lista de proteinas End ---------------*/
 

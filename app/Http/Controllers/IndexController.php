@@ -12,14 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class IndexController extends Controller
 {
     public function index(){
-        $proteinas = Proteina::all();
-        $creatinas = Creatina::all();
-        $ropas = Ropa::all();
+        $proteinas = Proteina::take(2)->get();
+        $creatinas = Creatina::take(2)->get();
+        $ropas = Ropa::take(2)->get();
         $productos = [[$proteinas], [$creatinas], [$ropas]];
 
-
         return view("web.index", compact("productos"));
-        //return gettype($productos);
-        //return $productos[0][0][0];
     }
 }
