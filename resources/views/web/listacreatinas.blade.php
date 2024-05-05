@@ -111,46 +111,4 @@
     </section>
     {{-- Seccion de la lista de proteinas End --}}
 
-
-
-
-    {{-- Footer Start --}}
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <p>Somos una tienda online de productos deportivos y de suplementación. Ofrecemos una amplia variedad de
-                        artículos para ayudarte a alcanzar tus objetivos deportivos.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Menú</h4>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#prodEspecificos">Productos específicos</a></li>
-                        <li><a href="#productos">Productos</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>Redes sociales</h4>
-                    <ul class="redes-sociales">
-                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}" alt=""></a>
-                        </li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}" alt=""></a>
-                        </li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}"
-                                    alt=""></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center copyright">
-                    <p>&copy; 2024 Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    {{-- Footer End --}}
-
 @endsection

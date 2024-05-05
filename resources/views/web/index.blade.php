@@ -60,6 +60,9 @@
                                         <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_todos_pedidos') }}">Pedidos</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                         </a>
@@ -174,7 +177,7 @@
 
     {{-- Footer Start --}}
     <footer class="footer">
-        <div class="container">
+        <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
                     <p>Somos una tienda online de productos deportivos y de suplementación. Ofrecemos una amplia variedad de

@@ -106,7 +106,7 @@
     <section>
         
         @php
-            $producto = $datos['producto'];
+$producto = $datos['producto'];
         @endphp
         <div class="container">
             <div class="row align-items-center">
@@ -119,14 +119,7 @@
                         <li class="list-group-item" ><strong>Precio: </strong>{{ $producto->precio }}</li>
                         @if (isset($producto->proteina))
                         <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
-                        <li class="list-group-item"><strong>Cantidad: </strong>{{ $producto->proteina->cantidad }}</li>
-                        <form action="{{route('producto_comprobar_autenticacion')}}">
-                            <label for="cantidad">Cantidad</label>
-                            <input type="number" name="cantidad" id="cantidad">
-                            <button type="submit" class="btn btn-success btn-block">Comprar</button>
-                        </form>
-                        <a href="">Añadir al carrito</a>
-
+                        <li class="list-group-item"><strong>Cantidad (Kg): </strong>{{ $producto->proteina->cantidad }}</li>
                         @elseif (isset($producto->creatina))
                         <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
                         @elseif(isset($producto->ropa))
@@ -135,25 +128,38 @@
                         @endif
 
                         @if (session('mensaje'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('mensaje') }}
-                        </div>
+                            <div class="alert alert-success" role="alert">
+                                {{ session('mensaje') }}
+                            </div>
                         @endif
 
-                        <form action="{{route('pedido.comprar_ya')}}">
+                        <form action="{{ route('pedido.comprar_ya') }}" class="needs-validation" novalidate>
                             @csrf
                             <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                            <label for="cantidad">Cantidad</label>
-                            <input type="number" name="cantidad" id="cantidad"><br/>
-                            <label for="direccion_id">Direccion de envío:</label>
-                            <select name="direccion_id" id="direccion_id">
-                                @foreach ($datos['usuario']->direccion as $direccion)
-                                    <option value="{{ $direccion->id }}">{{$direccion->__toString()}}</option>
-                                @endforeach
-                            </select>
+                            
+                            <div class="mb-3">
+                                <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
+                                <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
+                            </div>
+
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            <div class="mb-3">
+                                <label for="direccion_id" class="form-label"><strong>Dirección de envío:</strong></label>
+                                <select class="form-select" id="direccion_id" name="direccion_id" required>
+                                    @foreach ($datos['usuario']->direccion as $direccion)
+                                        <option value="{{ $direccion->id }}">{{ $direccion->__toString() }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">Por favor selecciona una dirección de envío.</div>
+                            </div>
+
                             <button type="submit" class="btn btn-success btn-block">Comprar</button>
                         </form>
-                        
                     </ul>
                 </div>
             </div>
@@ -163,42 +169,4 @@
 
     {{-- Información de producto End --}}
 
-    {{-- Footer Start --}}
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <p>Somos una tienda online de productos deportivos y de suplementación. Ofrecemos una amplia variedad de
-                        artículos para ayudarte a alcanzar tus objetivos deportivos.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Menú</h4>
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#prodEspecificos">Productos específicos</a></li>
-                        <li><a href="#productos">Productos</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4>Redes sociales</h4>
-                    <ul class="redes-sociales">
-                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}" alt=""></a>
-                        </li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}" alt=""></a>
-                        </li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}"
-                                    alt=""></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center copyright">
-                    <p>&copy; 2024 Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    {{-- Footer End --}}
 @endsection

@@ -3,7 +3,6 @@
 use App\Http\Controllers\CreatinaController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProteinaController;
 use App\Http\Controllers\RopaController;
@@ -49,6 +48,8 @@ Route::get('producto_comprobar_autenticacion', [ProductoController::class,'compr
 Route::get('pedido/ya', [PedidoController::class, 'comprar_ya'])->name('pedido.comprar_ya');
 
 Route::get('ver_pedidos', [PedidoController::class, 'all'])->name('ver_pedidos');
+Route::get('ver_todos_pedidos', [PedidoController::class, 'ver_todos_pedidos'])->name('ver_todos_pedidos');
+Route::put('editar_estado/{id}', [PedidoController::class, 'modificar_estado'])->name('editar_estado');
 
 Route::get('lista_proteinas', [ProductoController::class,'listaproteinas'])->name('producto.listaproteinas');
 Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->name('producto.listacreatinas');
