@@ -46,3 +46,7 @@ Route::get('producto/{id}', [ProductoController::class,'seleccionarProducto'])->
 Route::get('producto_comprobar_autenticacion', [ProductoController::class,'comprobar_autenticacion'])->name('producto_comprobar_autenticacion');
 
 Route::get('ver_pedidos', [PedidoController::class, 'all'])->name('ver_pedidos');
+
+Route::get('lista_proteinas', [ProductoController::class,'listaproteinas'])->name('producto.listaproteinas');
+Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->name('producto.listacreatinas');
+Route::get('lista_ropas', [ProductoController::class,'listaropas'])->name('producto.listaropas');

@@ -15,37 +15,58 @@
                 <div class="col-md-8 d-flex justify-content-end">
                     @if (Route::has('login'))
                         @auth
-                            @if (Auth::user()->rol_id == 2)
+                            @if (Auth::user()->rol_id == 1)
                                 <a href="/" style="margin-right: 20px;">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
                                 </a>
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            @elseif (Auth::user()->rol_id == 2)
+                                <a href="/" style="margin-right: 20px;">
+                                    <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
+                                </a>
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_pedidos') }}">Pedidos</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             @endif
-                            <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
-                                class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item text-success" href="">
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <button type="submit" class="btn btn-success me-2">Logout</button>
-                                        </form>
-                                    </a>
-                                </li>
-                            </ul>
-
 
                             @if (Auth::user()->rol_id == 1)
-                                <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                    aria-expanded="false">Productos</a>
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
+                                    class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item text-success" href="">Proteina</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_proteinas') }}">Proteina</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-success" href="">Creatina</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_creatinas') }}">Creatina</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-success" href="">Ropa</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_ropas') }}">Ropa</a>
                                     </li>
                                 </ul>
                             @endif

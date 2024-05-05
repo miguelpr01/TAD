@@ -1,6 +1,6 @@
 @extends('template.main')
 
-@section('title', 'Naturfit')
+@section('title', 'Ropa')
 
 @section('contenido')
 
@@ -19,7 +19,7 @@
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{route('producto.listaproteinas')}}">Proteina</a>
+                                        <a class="dropdown-item text-success" href="{{route('producto.listaproteinas')}}">Proteína</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item text-success" href="{{route('producto.listacreatinas')}}">Creatina</a>
@@ -39,25 +39,25 @@
                                 <a href="/" style="margin-right: 20px;">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
                                 </a>
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_pedidos') }}">Pedidos</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             @endif
-                            <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
-                                class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                <li>
-                                    <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-success" href="{{ route('ver_pedidos') }}">Pedidos</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                    </a>
-                                </li>
-                            </ul>
                         @else
                             <a href="{{ 'login' }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
@@ -71,31 +71,39 @@
     </section>
     {{-- Header End --}}
 
-    {{-- Sección de la lista de productos Start --}}
-    <section class="section-lista-productos" id="productos">
+    {{-- Seccion de la lista de proteinas Start --}}
+    <section class="seccion-lista-proteinas mb-5">
         <div class="container">
-            <h1 class="text-center mb-5">Pedidos</h1>
-            <div class="row">
-                <table class="table">
-                    <thead class="thead-dark">
+            <h1 class="titulo">Lista de Ropa</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Productos</th>
-                            <th>Fecha</th>
-                            <th>Estado</th>
+                            <th class="text-center">Imagen</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Precio</th>
+                            <th class="text-center">Talla</th>
+                            <th class="text-center">Color</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pedidos as $pedido)
+                        @foreach ($ropas as $ropa)
                             <tr>
-                                <td>{{ $pedido->id }}</td>
                                 <td>
-                                    @foreach ($pedido->producto as $producto)
-                                        <div>{{ $producto->nombre }}</div>
-                                    @endforeach
+                                    <div class="image-container text-center">
+                                        <img src="{{ $ropa->producto->imagen }}" alt="{{ $ropa->producto->nombre }}"
+                                            class="img-thumbnail" >
+                                    </div>
                                 </td>
-                                <td>{{ $pedido->fechaPedido }}</td>
-                                <td>{{ $pedido->estadoPedido }}</td>
+                                <td class="align-middle text-center">{{ $ropa->producto->nombre }}</td>
+                                <td class="align-middle text-center">{{ $ropa->producto->precio }}</td>
+                                <td class="align-middle text-center">{{ $ropa->talla }}</td>
+                                <td class="align-middle text-center">{{ $ropa->color }}</td>
+                                <td class="align-middle text-center">
+                                    <form action="{{ route('producto.seleccionarProducto', $ropa->producto->id) }}">
+                                        <button type="submit" class="btn btn-success btn-block">Ver producto</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -103,11 +111,14 @@
             </div>
         </div>
     </section>
-    {{-- Sección de la lista de productos End --}}
+    {{-- Seccion de la lista de proteinas End --}}
+
+
+
 
     {{-- Footer Start --}}
     <footer class="footer">
-        <div class="container">
+        <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
                     <p>Somos una tienda online de productos deportivos y de suplementación. Ofrecemos una amplia variedad de
@@ -125,9 +136,13 @@
                 <div class="col-md-4">
                     <h4>Redes sociales</h4>
                     <ul class="redes-sociales">
-                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}" alt=""></a></li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}"  alt=""></a></li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}" alt=""></a>
+                        </li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}" alt=""></a>
+                        </li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}"
+                                    alt=""></a>
+                        </li>
                     </ul>
                 </div>
             </div>

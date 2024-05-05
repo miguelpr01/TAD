@@ -45,4 +45,19 @@ class ProductoController extends Controller
     public function comprobar_autenticacion(){
         return "Hola";
     }
+
+    public function listaproteinas(){
+        $proteinas = Proteina::all();
+        return view('web.listaproteinas', compact('proteinas'));
+    }
+
+    public function listacreatinas(){
+        $creatinas = Creatina::all();
+        return view('web.listacreatinas', compact('creatinas'));
+    }
+
+    public function listaropas(){
+        $ropas = Ropa::all();
+        return view('web.listaropas', compact('ropas'));
+    }
 }

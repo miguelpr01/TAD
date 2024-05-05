@@ -143,4 +143,18 @@ body {
   }
 /* ----------     Página de ver producto End ---------------*/
 
+/* ----------     Página de ver lista de proteinas Start ---------------*/
+.titulo {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
 
+.seccion-lista-proteinas img{
+    max-width: 100px;
+}
+/* ----------     Página de ver lista de proteinas End ---------------*/

@@ -10,10 +10,13 @@ class PedidoController extends Controller
 {
     public function all() {
         $usuario_id = auth()->user()->id;
-        $pedidos = Pedido::where('user_id', $usuario_id)->get();
+        $pedidos = Pedido::where('user_id', $usuario_id)
+                    ->with('producto')
+                    ->get();
 
         return view('web.pedido', compact('pedidos'));
     }
+
     public function create(Request $request) {
         $pedido = new Pedido();
     }
