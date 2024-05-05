@@ -29,12 +29,6 @@ class ProductoController extends Controller
         }
     }
 
-    public function seleccionarProducto($id)
-    {
-        $producto = Producto::findOrFail($id);
-        return view('web.producto', compact('producto'));
-    }
-
     public function delete($id)
     {
         $producto = Producto::findOrFail($id);
