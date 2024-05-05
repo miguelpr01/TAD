@@ -28,7 +28,6 @@
                                 </li>
                             </ul>
 
-
                             @if (Auth::user()->rol_id == 1)
                                 <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                     aria-expanded="false">Productos</a>
@@ -45,7 +44,7 @@
                                 </ul>
                             @endif
                         @else
-                            <a href="{{ 'login' }}" class="btn btn-success me-2">Iniciar sesión</a>
+                            <a href="{{ '../login' }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="btn btn-success">Registro</a>
                             @endif
@@ -59,6 +58,11 @@
 
     {{-- Información de producto Start --}}
     <section>
+        @if (session('mensaje_error_autenticacion'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('mensaje_error_autenticacion') }}
+            </div>
+        @endif
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 my-3">
@@ -67,24 +71,39 @@
                 <div class="col-md-6">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Nombre: </strong>{{ $producto->nombre }}</li>
-                        <li class="list-group-item" ><strong>Precio: </strong>{{ $producto->precio }}</li>
+                        <li class="list-group-item"><strong>Precio: </strong>{{ $producto->precio }}</li>
                         @if (isset($producto->proteina))
-                        <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
-                        <li class="list-group-item"><strong>Cantidad: </strong>{{ $producto->proteina->cantidad }}</li>
-                        <form action="{{route('producto.comprobarautenticacion')}}">
-                            <button type="submit">Comprar</button>
-                        </form>
+                            <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
+                            <li class="list-group-item"><strong>Cantidad: </strong>{{ $producto->proteina->cantidad }}</li>
+                            <form action="{{ route('producto.comprobarautenticacion') }}" method="POST" class="mt-3">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="cantidad"><strong>Cantidad: </strong></label>
+                                    <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Cantidad" min="1">
+                                </div>
+                                <br>
+                                <input type="hidden" value="{{$producto->id}}" name="producto_id">
+                                <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                            </form>
 
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
+
+                            Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario
+                            esta registrado o no para hacer la compra
                         @elseif (isset($producto->creatina))
-                        <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
-
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
+                            <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
+                            <form action="{{ route('producto.comprobarautenticacion') }}">
+                                <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                            </form>
+                            Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario
+                            esta registrado o no para hacer la compra
                         @elseif(isset($producto->ropa))
-                        <li class="list-group-item"><strong>Talla: </strong>{{ $producto->ropa->talla }}</li>
-                        <li class="list-group-item"><strong>Color: </strong>{{ $producto->ropa->color }}</li>
-
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
+                            <li class="list-group-item"><strong>Talla: </strong>{{ $producto->ropa->talla }}</li>
+                            <li class="list-group-item"><strong>Color: </strong>{{ $producto->ropa->color }}</li>
+                            <form action="{{ route('producto.comprobarautenticacion') }}">
+                                <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                            </form>
+                            Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario
+                            esta registrado o no para hacer la compra
                         @endif
                     </ul>
                 </div>
