@@ -92,7 +92,7 @@
                                 </ul>
                             @endif
                         @else
-                            <a href="{{ 'login' }}" class="btn btn-success me-2">Iniciar sesión</a>
+                        <a href="{{ route('login') }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="btn btn-success">Registro</a>
                             @endif
