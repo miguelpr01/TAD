@@ -75,6 +75,20 @@
                         @if (isset($producto->proteina))
                         <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
                         <li class="list-group-item"><strong>Cantidad: </strong>{{ $producto->proteina->cantidad }}</li>
+
+                        @elseif (isset($producto->creatina))
+                        <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
+                        @elseif(isset($producto->ropa))
+                        <li class="list-group-item"><strong>Talla: </strong>{{ $producto->ropa->talla }}</li>
+                        <li class="list-group-item"><strong>Color: </strong>{{ $producto->ropa->color }}</li>
+                        @endif
+
+                        @if (session('mensaje'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('mensaje') }}
+                        </div>
+                        @endif
+
                         <form action="{{route('pedido.comprar_ya')}}">
                             @csrf
                             <input type="hidden" name="producto_id" value="{{ $producto->id }}">
@@ -88,18 +102,7 @@
                             </select>
                             <button type="submit" class="btn btn-success btn-block">Comprar</button>
                         </form>
-
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
-                        @elseif (isset($producto->creatina))
-                        <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
-
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
-                        @elseif(isset($producto->ropa))
-                        <li class="list-group-item"><strong>Talla: </strong>{{ $producto->ropa->talla }}</li>
-                        <li class="list-group-item"><strong>Color: </strong>{{ $producto->ropa->color }}</li>
-
-                        Falta meter la cantidad del producto que se va a comprar, realizar la compra y ver si el usuario esta registrado o no para hacer la compra
-                        @endif
+                        
                     </ul>
                 </div>
             </div>
