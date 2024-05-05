@@ -24,6 +24,20 @@ class ProductoController extends Controller
          }else{
              return back()->with("mensaje_error_autenticacion","El usuario no esta logado");
          }
+    }
 
+    public function listaproteinas(){
+        $proteinas = Proteina::all();
+        return view('web.listaproteinas', compact('proteinas'));
+    }
+
+    public function listacreatinas(){
+        $creatinas = Creatina::all();
+        return view('web.listacreatinas', compact('creatinas'));
+    }
+
+    public function listaropas(){
+        $ropas = Ropa::all();
+        return view('web.listaropas', compact('ropas'));
     }
 }

@@ -64,13 +64,13 @@
         <div class="container-xl">
             <div class="row justify-content-center">
                 <div class="col text-center">
-                    <a href="" class="btn btn-success">Proteina</a>
+                    <a href="{{route('producto.listaproteinas')}}" class="btn btn-success">Proteina</a>
                 </div>
                 <div class="col text-center">
-                    <a href="" class="btn btn-success">Creatina</a>
+                    <a href="{{route('producto.listacreatinas')}}" class="btn btn-success">Creatina</a>
                 </div>
                 <div class="col text-center">
-                    <a href="" class="btn btn-success">Ropa</a>
+                    <a href="{{route('producto.listaropas')}}" class="btn btn-success">Ropa</a>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
 
     {{-- Footer Start --}}
     <footer class="footer">
-        <div class="container">
+        <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
                     <p>Somos una tienda online de productos deportivos y de suplementación. Ofrecemos una amplia variedad de
