@@ -25,4 +25,8 @@ class Direccione extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+
+    public function __toString(){
+        return $this->calle . ', ' . $this->numero . ', ' . $this->ciudad;
+    }
 }

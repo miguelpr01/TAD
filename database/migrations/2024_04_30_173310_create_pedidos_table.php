@@ -13,13 +13,9 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->integer('numPedido');
             $table->dateTime('fechaPedido');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('producto_id');
-            $table->foreign('producto_id')->references('id')->on('productos');
-            $table->integer('cantProducto');
             $table->string('estadoPedido');
             // Aqui hacemos un toString con todos los datos de la direccion del cliente en el controlador y lo almacenamos del tiron en la bbdd isi pisi
             $table->string('direccionCliente'); //<-- Aqui

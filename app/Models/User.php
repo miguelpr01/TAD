@@ -48,7 +48,7 @@ class User extends Authenticatable
     ];
 
     public function direccion(){
-        return $this->hasMany('App\Models\Direccion');
+        return $this->hasMany('App\Models\Direccione');
     }
 
     public function rol(){

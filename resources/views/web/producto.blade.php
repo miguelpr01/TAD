@@ -59,6 +59,10 @@
 
     {{-- Información de producto Start --}}
     <section>
+        
+        @php
+            $producto = $datos['producto'];
+        @endphp
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 my-3">
@@ -71,9 +75,17 @@
                         @if (isset($producto->proteina))
                         <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
                         <li class="list-group-item"><strong>Cantidad: </strong>{{ $producto->proteina->cantidad }}</li>
-                        <form action="{{route('producto_comprobar_autenticacion')}}">
+                        <form action="{{route('pedido.comprar_ya')}}">
+                            @csrf
+                            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
                             <label for="cantidad">Cantidad</label>
-                            <input type="number" name="cantidad" id="cantidad">
+                            <input type="number" name="cantidad" id="cantidad"><br/>
+                            <label for="direccion_id">Direccion de envío:</label>
+                            <select name="direccion_id" id="direccion_id">
+                                @foreach ($datos['usuario']->direccion as $direccion)
+                                    <option value="{{ $direccion->id }}">{{$direccion->__toString()}}</option>
+                                @endforeach
+                            </select>
                             <button type="submit" class="btn btn-success btn-block">Comprar</button>
                         </form>
 
