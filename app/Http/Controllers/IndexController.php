@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creatina;
+use App\Models\Producto;
 use App\Models\Proteina;
 use App\Models\Ropa;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class IndexController extends Controller
         $creatinas = Creatina::all();
         $ropas = Ropa::all();
         $productos = [[$proteinas], [$creatinas], [$ropas]];
+
 
         return view("web.index", compact("productos"));
         //return gettype($productos);

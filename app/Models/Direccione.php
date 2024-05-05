@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Direccion extends Model
+class Direccione extends Model
 {
     use HasFactory;
 
@@ -18,10 +18,11 @@ class Direccion extends Model
         'ciudad',
         'provincia',
         'pais',
+        'user_id'
     ];
 
     // Relación 1:1 inversa Direccion<-Cliente
-    public function cliente(){
-        return $this->belongsTo('App\Models\Cliente');
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -12,6 +12,7 @@ class Proteina extends Model
     protected $fillable = [
         'sabor',
         'cantidad',
+        'producto_id',
     ];
 
     // Relacion 1:1 inversa Proteina<-Producto

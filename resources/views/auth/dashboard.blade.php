@@ -1,4 +1,6 @@
-@extends('web.index')
+@extends('template.main')
+
+@section('title', 'Naturfit')
 
 @section('content')
 <div class="container">
@@ -15,7 +17,7 @@
                             {{session('status')}}
                         </div>
                     @endif
-                    You are logged in!
+                    ¡Ya estás logeado!
                 </div>
             </div>
         </div>
