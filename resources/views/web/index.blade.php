@@ -19,29 +19,29 @@
                             <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                 class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
                                 <li>
-                                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
+                                    <a class="dropdown-item text-success" href="">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success me-2">Logout</button>
+                                        </form>
                                     </a>
                                 </li>
                             </ul>
 
 
                             @if (Auth::user()->rol_id == 1)
-                            <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
-                                class="btn btn-success me-2">Productos</button>
+                                <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                    aria-expanded="false">Productos</a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{ route('ver_proteinas') }}">Proteina</a>
+                                        <a class="dropdown-item text-success" href="">Proteina</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{ route('ver_creatinas') }}">Creatina</a>
+                                        <a class="dropdown-item text-success" href="">Creatina</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{ route('ver_ropas') }}">Ropa</a>
+                                        <a class="dropdown-item text-success" href="">Ropa</a>
                                     </li>
                                 </ul>
                             @endif
@@ -80,7 +80,7 @@
 
     {{-- Carousel Start --}}
     <section class="section-carousel">
-        <div class="container-xl">
+        <div class="container-fluid">
             <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -111,8 +111,8 @@
     </section>
     {{-- Carousel End --}}
 
-     {{-- Sección de la lista de productos Start --}}
-     <section class="section-lista-productos" id="productos">
+    {{-- Sección de la lista de productos Start --}}
+    <section class="section-lista-productos" id="productos">
         <div class="container">
             <h1 class="text-center mb-5">Algunos productos</h1>
             <div class="row">
