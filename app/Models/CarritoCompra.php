@@ -14,8 +14,8 @@ class CarritoCompra extends Model
     ];
 
     // Relación 1:1 inversa Carrito<-Cliente
-    public function cliente(){
-        return $this->belongsTo('App\Models\Cliente');
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 
     // Relación 1:M Carrito->Productos

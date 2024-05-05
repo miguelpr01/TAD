@@ -2,7 +2,7 @@
 
 namespace App\Actions\Fortify;
 
-use App\Models\Cliente;
+use App\Models\Direccione;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -19,13 +19,10 @@ class CreateNewUser implements CreatesNewUsers
      * @param  array<string, string>  $input
      */
     public function create(array $input): User
-    {     
+    {
         Validator::make($input, [
             'nombre' => ['required', 'string', 'max:255'],
-            'apellidos' => ['required', 'string'],
-            'username' => ['required', 'string'],
-            'telefono' => ['required', 'string', 'regex:/[6|7][0-9]{8}/'],
-            'fechaNacimiento' => ['required'],
+            'apellidos' => ['required', 'string', 'max:255'],
             'email' => [
                 'required',
                 'string',
@@ -34,20 +31,30 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            'telefono' => ['required', 'regex:/[6|7][0-9]{8}/'],
+            'fechaNacimiento' => ['required'],
         ])->validate();
 
-        $user = User::create([
+        $user =  User::create([
             'nombre' => $input['nombre'],
             'apellidos' => $input['apellidos'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'telefono' => $input['telefono'],
+            'fechaNacimiento'=> $input['fechaNacimiento'],
+            'rol_id' => 2,
         ]);
 
-        $cliente = Cliente::create([
-            'username' => $input['username'],
-            'telefono' => $input['telefono'],
-            'fechaNacimiento' => $input['fechaNacimiento'],
-            'user_id' => $user->id
+        $direccion = Direccione::create([
+            "calle"=>$input['calle'],
+            "numero"=>$input['numero'],
+            "piso"=>$input['piso'],
+            "puerta"=>$input['puerta'],
+            "codPostal"=>$input['codPostal'],
+            "ciudad"=>$input['ciudad'],
+            "provincia"=>$input['provincia'],
+            'pais' => $input['pais'],
+            'user_id' => $user->id,
         ]);
 
         return $user;

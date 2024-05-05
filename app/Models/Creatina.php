@@ -11,6 +11,7 @@ class Creatina extends Model
 
     protected $fillable = [
         'opcion',
+        'producto_id',
     ];
 
     // Relacion 1:1 inversa Creatina<-Producto

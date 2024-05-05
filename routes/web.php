@@ -20,30 +20,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
 
-Route::get('/home', function () {
-    return view('auth.dashboard');
-})->middleware('auth');
+Route::get('/home', [IndexController::class, 'index'])->middleware('auth')->name('index.indexlogado');
 
-Route::get('/create/product', [ProductoController::class, 'create']);
-Route::post('/proteina', [ProteinaController::class, 'create'])->name('proteina.create');
-Route::post('/creatina', [CreatinaController::class, 'create'])->name('creatina.create');
-Route::post('/ropa', [RopaController::class, 'create'])->name('ropa.create');
+Route::get('ver_proteinas', [ProteinaController::class, 'all'])->name('ver_proteinas');
+Route::get('ver_creatinas', [CreatinaController::class, 'all'])->name('ver_creatinas');
+Route::get('ver_ropas', [RopaController::class, 'all'])->name('ver_ropas');
 
-Route::put('/proteina', [ProteinaController::class, 'update'])->name('proteina.update');
-Route::put('/creatina', [CreatinaController::class, 'update'])->name('creatina.update');
-Route::put('/ropa', [RopaController::class, 'update'])->name('ropa.update');
+Route::get('create/{string}', [ProductoController::class, 'create'])->name('nuevo_producto');
 
-Route::delete('/proteina/{id?}', [ProteinaController::class, 'delete'])->name('proteina.delete');
-Route::delete('/creatina/{id?}', [CreatinaController::class, 'delete'])->name('creatina.delete');
-Route::delete('/ropa/{id?}', [RopaController::class, 'delete'])->name('ropa.delete');
+Route::post('crear_proteina', [ProteinaController::class, 'create'])->name('confirmar_crear_proteina');
+Route::post('crear_creatina', [CreatinaController::class, 'create'])->name('confirmar_crear_creatina');
+Route::post('crear_ropa', [RopaController::class, 'create'])->name('confirmar_crear_ropa');
 
-Route::get('/proteina/{id?}', [ProteinaController::class, 'read'])->name('proteina.read');
-Route::get('/creatina/{id?}', [CreatinaController::class, 'read'])->name('creatina.read');
-Route::get('/ropa/{id?}', [RopaController::class, 'read'])->name('ropa.read');
+Route::delete('delete/{id}', [ProductoController::class, 'delete'])->name('borrar_producto');
 
-Route::get('/proteina', [ProteinaController::class, 'all'])->name('proteina.all');
-Route::get('/creatina', [CreatinaController::class, 'all'])->name('creatina.all');
-Route::get('/ropa', [RopaController::class, 'all'])->name('ropa.all');
-Route::get('redirect_login', [LoginController::class, 'redirect_login'])->name('redirectlogin');
-Route::get('redirect_register', [LoginController::class, 'redirect_register'])->name('redirectregister');
-Route::get('all', [ClienteController::class, 'all'])->name('verclientes');
+Route::get('editar_proteina/{id}', [ProteinaController::class, 'edit'])->name('editar_proteina');
+Route::put('confirmar_editar_proteina/{id}', [ProteinaController::class, 'update'])->name('confirmar_editar_proteina');
+Route::get('editar_creatina/{id}', [CreatinaController::class, 'edit'])->name('editar_creatina');
+Route::put('confirmar_editar_creatina/{id}', [CreatinaController::class, 'update'])->name('confirmar_editar_creatina');
+Route::get('editar_ropa/{id}', [RopaController::class, 'edit'])->name('editar_ropa');
+Route::put('confirmar_editar_ropa/{id}', [RopaController::class, 'update'])->name('confirmar_editar_ropa');
+
+Route::get('producto/{id}', [ProductoController::class,'seleccionarProducto'])->name('producto.seleccionarProducto');
+Route::get('producto_comprobar_autenticacion', [ProductoController::class,'comprobar_autenticacion'])->name('producto_comprobar_autenticacion');

@@ -2,20 +2,23 @@
 
 namespace Database\Seeders;
 
-use App\Models\Administrador;
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AdministradorSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Administrador::create([
-            'adminname'=>'admin1',
-            'user_id'=>1,
+        Role::create([
+            'rol'=>'admin',
+        ]);
+
+        Role::create([
+            'rol'=>'usuario',
         ]);
     }
 }

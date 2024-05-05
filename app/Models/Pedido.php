@@ -13,6 +13,8 @@ class Pedido extends Model
         'numPedido',
         'fechaPedido',
         'cantProducto',
+        'estadoPedido',
+        'direccionCliente',
     ];
 
     public function cliente(){
@@ -23,7 +25,7 @@ class Pedido extends Model
         return $this->belongsTo('App\Models\Producto');
     }
 
-    public function estadopedido(){
-        return $this->hasOne('App\Models\EstadoPedido');
+    public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 }

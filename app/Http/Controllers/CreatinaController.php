@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creatina;
+use App\Http\Requests\StoreCreatinaRequest;
+use App\Http\Requests\UpdateCreatinaRequest;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -14,14 +16,22 @@ class CreatinaController extends Controller
         $producto->precio = $request->precio;
         $producto->imagen = $request->imagen;
 
+        $producto->save();
+
         $creatina = new Creatina();
         $creatina->opcion = $request->opcion;
 
         $producto->creatina()->save($creatina);
-        $producto->save();
-        $creatina->save();
 
-        return back() -> with('mensaje', 'Creatina agregada exitosamente.');
+        $creatinas = Creatina::all();
+        
+        $productos = [];
+        foreach ($creatinas as $creatina) {
+            $producto = Producto::find($creatina->producto_id);
+            $productos[$creatina->producto_id] = $producto;
+        }
+        
+        return redirect()->route('ver_creatinas')->with('mensaje', 'Proteina agregada');
     }
 
     public function read($id) {
@@ -29,19 +39,25 @@ class CreatinaController extends Controller
         return view('??', compact('creatina'));
     }
 
+    public function edit($id)
+    {
+        $producto = Producto::findOrFail($id);
+        return view('productos.creatina.editar_creatina', compact('producto'));
+    }
+
     public function update(Request $request, $id) {
-        $creatina = Creatina::findOrFail($id);
+        $producto = Producto::findOrFail($id);
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->imagen = $request->imagen;
+
+        $creatina = Creatina::where('producto_id', $id)->firstOrFail();
         $creatina->opcion = $request->opcion;
 
-        $prod = $creatina->producto;
-        $prod->nombre = $request->nombre;
-        $prod->precio = $request->precio;
-        $prod->imagen = $request->imagen;
-
-        $prod->save();
         $creatina->save();
+        $producto->save();
 
-        return back() -> with('mensaje','Creatina actualizada exitosamente.');
+        return redirect()->route('ver_creatinas')->with('mensaje', 'Creatina editada');
     }
 
     public function delete($id) {
@@ -51,6 +67,13 @@ class CreatinaController extends Controller
 
     public function all() {
         $creatinas = Creatina::all();
-        return view('??', compact('creatinas'));
+        
+        $productos = [];
+        foreach ($creatinas as $creatina) {
+            $producto = Producto::find($creatina->producto_id);
+            $productos[$creatina->producto_id] = $producto;
+        }
+        
+        return view('productos.creatina.creatina', compact('creatinas', 'productos'));
     }
 }
