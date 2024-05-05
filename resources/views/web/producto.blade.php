@@ -7,10 +7,29 @@
     <section class="header">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <a href="/">
+            <div class="col-md-4">
+                    <a href="" style="text-decoration: none; margin-right: 20px;">
                         <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
                     </a>
+                    @auth
+                        @if (Route::has('login'))
+                            @if (Auth::user()->rol_id == 2)
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
+                                    class="btn btn-success me-2">Productos</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{route('producto.listaproteinas')}}">Proteína</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{route('producto.listacreatinas')}}">Creatina</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{route('producto.listaropas')}}">Ropa</a>
+                                    </li>
+                                </ul>
+                            @endif
+                        @endif
+                    @endauth
                 </div>
                 <div class="col-md-8 d-flex justify-content-end">
                     @if (Route::has('login'))
@@ -60,7 +79,7 @@
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{ route('ver_proteinas') }}">Proteina</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_proteinas') }}">Proteína</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item text-success" href="{{ route('ver_creatinas') }}">Creatina</a>
