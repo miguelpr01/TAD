@@ -3,7 +3,6 @@
 use App\Http\Controllers\CreatinaController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProteinaController;
 use App\Http\Controllers\RopaController;
