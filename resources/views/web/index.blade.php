@@ -80,7 +80,7 @@
 
     {{-- Carousel Start --}}
     <section class="section-carousel">
-        <div class="container-xl">
+        <div class="container-fluid">
             <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -121,13 +121,13 @@
                         @foreach ($producto as $elemento)
                             <div class="col-md-4 mb-4">
                                 <div class="card h-100 shadow-sm">
-                                    <img src="{{ $elemento->producto->imagen }}" class="card-img-top" alt="...">
+                                    <img src="{{ $elemento->producto->imagen }}" class="card-img-top">
                                     <div class="card-body">
-                                        <h5 class="card-title">
-                                            {{ $elemento->producto->nombre }}</h5>
-                                        <p class="card-text">
-                                            {{ $elemento->producto->precio }}</p>
-                                        <a href="#" class="btn btn-success btn-block">Ver producto</a>
+                                        <h5 class="card-title">{{ $elemento->producto->nombre }}</h5>
+                                        <p class="card-text">{{ $elemento->producto->precio }}€</p>
+                                        <form action="{{route('producto.seleccionarProducto', $elemento->producto->id)}}">
+                                            <button type="submit" class="btn btn-success btn-block">Ver producto</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -159,14 +159,9 @@
                 <div class="col-md-4">
                     <h4>Redes sociales</h4>
                     <ul class="redes-sociales">
-                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}"
-                                    alt=""></a>
-                        </li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}"
-                                    alt=""></a>
-                        </li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}"
-                                    alt=""></a></li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}"  alt=""></a></li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}" alt=""></a></li>
                     </ul>
                 </div>
             </div>
