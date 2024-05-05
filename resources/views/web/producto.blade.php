@@ -77,6 +77,8 @@
                         <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
                         <li class="list-group-item"><strong>Cantidad: </strong>{{ $producto->proteina->cantidad }}</li>
                         <form action="{{route('producto_comprobar_autenticacion')}}">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" name="cantidad" id="cantidad">
                             <button type="submit" class="btn btn-success btn-block">Comprar</button>
                         </form>
                         <a href="">Añadir al carrito</a>
