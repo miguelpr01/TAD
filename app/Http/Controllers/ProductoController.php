@@ -39,13 +39,20 @@ class ProductoController extends Controller
     public function seleccionarProducto($id)
     {
         $producto = Producto::findOrFail($id);
-        $idUser = auth()->user()->getAuthIdentifier();
-        $user = User::findOrFail($idUser);
 
-        $datos = [
-            'producto' => $producto,
-            'usuario' => $user
-        ];
+        if (auth()->check()) {
+            $idUser = auth()->user()->getAuthIdentifier();
+            $user = User::findOrFail($idUser);
+            $datos = [
+                'producto' => $producto,
+                'usuario' => $user
+            ];
+        } else {
+            $datos = [
+                'producto' => $producto
+            ];
+        }
+
         return view('web.producto', compact('datos'));
     }
 

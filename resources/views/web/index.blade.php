@@ -60,6 +60,9 @@
                                         <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_todos_pedidos') }}">Pedidos</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                         </a>
@@ -89,7 +92,7 @@
                                 </ul>
                             @endif
                         @else
-                            <a href="{{ 'login' }}" class="btn btn-success me-2">Iniciar sesión</a>
+                        <a href="{{ route('login') }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="btn btn-success">Registro</a>
                             @endif

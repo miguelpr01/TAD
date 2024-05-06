@@ -51,6 +51,8 @@ Route::get('lista_ropas', [ProductoController::class,'listaropas'])->name('produ
 Route::get('pedido/ya', [PedidoController::class, 'comprar_ya'])->name('pedido.comprar_ya');
 
 Route::get('ver_pedidos', [PedidoController::class, 'all'])->name('ver_pedidos');
+Route::get('ver_todos_pedidos', [PedidoController::class, 'ver_todos_pedidos'])->name('ver_todos_pedidos');
+Route::put('editar_estado/{id}', [PedidoController::class, 'modificar_estado'])->name('editar_estado');
 
 Route::get('lista_proteinas', [ProductoController::class,'listaproteinas'])->name('producto.listaproteinas');
 Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->name('producto.listacreatinas');

@@ -14,18 +14,18 @@
                     </a>
                     @auth
                         @if (Route::has('login'))
-                            @if (Auth::user()->rol_id == 2)
+                            @if (Auth::user()->rol_id == 1)
                                 <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{route('producto.listaproteinas')}}">Proteína</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_proteinas') }}">Proteína</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{route('producto.listacreatinas')}}">Creatina</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_creatinas') }}">Creatina</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-success" href="{{route('producto.listaropas')}}">Ropa</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_ropas') }}">Ropa</a>
                                     </li>
                                 </ul>
                             @endif
@@ -35,29 +35,23 @@
                 <div class="col-md-8 d-flex justify-content-end">
                     @if (Route::has('login'))
                         @auth
-                            @if (Auth::user()->rol_id == 2)
-                                <a href="/" style="margin-right: 20px;">
-                                    <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
-                                </a>
+                            @if (Auth::user()->rol_id == 1)
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             @endif
-                            <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
-                                class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                <li>
-                                    <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-success" href="{{ route('ver_pedidos') }}">Pedidos</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                    </a>
-                                </li>
-                            </ul>
                         @else
                             <a href="{{ 'login' }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
@@ -74,12 +68,18 @@
     {{-- Sección de la lista de productos Start --}}
     <section class="section-lista-productos" id="productos">
         <div class="container">
+            @if (session('mensaje_modificar_estado'))
+                <div class="message-created-note alert alert-success" role="alert">
+                    {{ session('mensaje_modificar_estado') }}
+                </div>
+            @endif
             <h1 class="titulo">Lista de Pedidos</h1>
             <div class="row">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
+                            <th>Cliente</th>
                             <th>Productos</th>
                             <th>Fecha</th>
                             <th>Estado</th>
@@ -89,13 +89,23 @@
                         @foreach($pedidos as $pedido)
                             <tr>
                                 <td>{{ $pedido->id }}</td>
+                                <td>{{ $pedido->user->nombre }}{{ " " }}{{ $pedido->user->apellidos }}</td>
                                 <td>
                                     @foreach ($pedido->producto as $producto)
                                         <div>{{ $producto->nombre }}</div>
                                     @endforeach
                                 </td>
                                 <td>{{ $pedido->fechaPedido }}</td>
-                                <td>{{ $pedido->estadoPedido }}</td>
+                                <form action="{{ route('editar_estado', $pedido->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <td>
+                                        <input type="text" name="estadoPedido" id="estadoPedido" value="{{ $pedido->estadoPedido }}">
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-success me-2">Actualizar estado</button>
+                                    </td>
+                                </form>
                             </tr>
                         @endforeach
                     </tbody>
