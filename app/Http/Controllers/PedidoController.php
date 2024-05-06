@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InfoCompra;
 use App\Models\Direccione;
 use App\Models\Pedido;
+use App\Models\Producto;
 use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class PedidoController extends Controller
@@ -27,6 +30,8 @@ class PedidoController extends Controller
     public function comprar_ya(Request $request) {
         $validator = Validator::make($request->all(), [
             'cantidad' => 'required|integer|min:1',
+            'direccion_id'=> 'required',
+            'producto_id'=> 'required',
         ]);
     
         if ($validator->fails()) {
@@ -46,6 +51,9 @@ class PedidoController extends Controller
         
         $user->save();
         $pedido->save();
+
+        $producto_nom = Producto::findOrFail($request->producto_id)->nombre;
+        Mail::to($user->email)->send(new InfoCompra($user->nombre, $producto_nom, $request->cantidad));
 
         return back()->with('mensaje','Pedido realizado exitosamente.');
     }
