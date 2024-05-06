@@ -4,13 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use App\Models\Proteina;
-use App\Http\Requests\StoreProteinaRequest;
-use App\Http\Requests\UpdateProteinaRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProteinaController extends Controller
 {
     public function create(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'precio'=> 'required',
+            'imagen'=> 'required',
+            'sabor'=> 'required',
+            'cantidad'=> 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('error', 'Datos inválidos.');
+        }
+
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;

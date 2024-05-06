@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use App\Models\Ropa;
-use App\Http\Requests\StoreRopaRequest;
-use App\Http\Requests\UpdateRopaRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RopaController extends Controller
 {
     public function create(Request $request) {
+        $validator = Validator::make($request->all(), [
+        'nombre' => 'required',
+        'precio'=> 'required',
+        'imagen'=> 'required',
+        'talla'=> 'required',
+        'color'=> 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('error', 'Datos inválidos.');
+        }
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
