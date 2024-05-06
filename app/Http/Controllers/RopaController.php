@@ -57,6 +57,18 @@ class RopaController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'precio'=> 'required',
+            'imagen'=> 'required',
+            'talla'=> 'required',
+            'color'=> 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('error', 'Datos inválidos.');
+        }
+
         $producto = Producto::findOrFail($id);
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
