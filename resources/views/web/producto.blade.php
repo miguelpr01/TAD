@@ -90,7 +90,7 @@
                                 </ul>
                             @endif
                         @else
-                            <a href="{{ '../login' }}" class="btn btn-success me-2">Iniciar sesión</a>
+                            <a href="{{ route('login') }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="btn btn-success">Registro</a>
                             @endif
@@ -111,7 +111,7 @@
         @endif
         
         @php
-$producto = $datos['producto'];
+            $producto = $datos['producto'];
         @endphp
         <div class="container">
             <div class="row align-items-center">
@@ -138,33 +138,68 @@ $producto = $datos['producto'];
                             </div>
                         @endif
 
-                        <form action="{{ route('pedido.comprar_ya') }}" class="needs-validation" novalidate>
-                            @csrf
-                            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                            
-                            <div class="mb-3">
-                                <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
-                                <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
-                            </div>
-
-                            @if (session('error'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ session('error') }}
+                        @auth
+                            <form action="{{ route('pedido.comprar_ya') }}" class="needs-validation" novalidate>
+                                @csrf
+                                <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                                
+                                <div class="mb-3">
+                                    <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
                                 </div>
-                            @endif
 
-                            <div class="mb-3">
-                                <label for="direccion_id" class="form-label"><strong>Dirección de envío:</strong></label>
-                                <select class="form-select" id="direccion_id" name="direccion_id" required>
-                                    @foreach ($datos['usuario']->direccion as $direccion)
-                                        <option value="{{ $direccion->id }}">{{ $direccion->__toString() }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="invalid-feedback">Por favor selecciona una dirección de envío.</div>
-                            </div>
+                                @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
 
-                            <button type="submit" class="btn btn-success btn-block">Comprar</button>
-                        </form>
+                                <div class="mb-3">
+                                    <label for="direccion_id" class="form-label"><strong>Dirección de envío:</strong></label>
+                                    <select class="form-select" id="direccion_id" name="direccion_id" required>
+                                        @auth
+                                            @foreach ($datos['usuario']->direccion as $direccion)
+                                                <option value="{{ $direccion->id }}">{{ $direccion->__toString() }}</option>
+                                            @endforeach
+                                        @endauth
+                                    </select>
+                                    <div class="invalid-feedback">Por favor selecciona una dirección de envío.</div>
+                                </div>
+
+                                <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                            </form>
+                        @else
+                            <form action="{{ route('login') }}" class="needs-validation" novalidate>
+                                @csrf
+                                <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                                
+                                <div class="mb-3">
+                                    <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
+                                </div>
+
+                                @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+
+                                <div class="mb-3">
+                                    <label for="direccion_id" class="form-label"><strong>Dirección de envío:</strong></label>
+                                    <select class="form-select" id="direccion_id" name="direccion_id" required>
+                                        @auth
+                                            @foreach ($datos['usuario']->direccion as $direccion)
+                                                <option value="{{ $direccion->id }}">{{ $direccion->__toString() }}</option>
+                                            @endforeach
+                                        @endauth
+                                    </select>
+                                    <div class="invalid-feedback">Por favor selecciona una dirección de envío.</div>
+                                </div>
+
+                                <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                            </form>
+                        @endauth
+
                     </ul>
                 </div>
             </div>
