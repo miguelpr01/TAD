@@ -3,14 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creatina;
-use App\Http\Requests\StoreCreatinaRequest;
-use App\Http\Requests\UpdateCreatinaRequest;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CreatinaController extends Controller
 {
     public function create(Request $request) {
+        $validator = Validator::make($request->all(), [
+        'nombre' => 'required',
+        'precio'=> 'required',
+        'imagen'=> 'required',
+        'opcion'=> 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('error', 'Datos inválidos.');
+        }
+
         $producto = new Producto();
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
@@ -46,6 +56,17 @@ class CreatinaController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'precio'=> 'required',
+            'imagen'=> 'required',
+            'opcion'=> 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('error', 'Datos inválidos.');
+        }
+
         $producto = Producto::findOrFail($id);
         $producto->nombre = $request->nombre;
         $producto->precio = $request->precio;
