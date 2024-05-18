@@ -1,10 +1,11 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* ----------     Página del index Start ---------------*/
@@ -20,32 +21,20 @@ body {
     height: auto;
 }
 
+.header .carrito{
+    margin-right: 15px;
+}
+
 .header .btn-success {
-    background-color: #28a745;
+    background-color: #61b374;
+    border-color: #28a745;
+}
+
+.header .btn-success:hover {
+    background-color: #23863b;
     border-color: #28a745;
 }
 /* Seccion del Header End */
-
-/* Seccion de los botones Start */
-.btn-paginas {
-    display: flex;
-    justify-content: center;
-    margin: 2rem auto;
-}
-
-.btn-paginas .btn {
-    outline: none;
-    margin: 0 1rem;
-    padding: 10px 20px;
-    transition: background-color 0.2s ease-in-out;
-    background-color: #28a745;
-    color: #fff;
-}
-
-.btn-paginas .btn:hover {
-    background-color: #34d05b;
-}
-/* Seccion de los botones End */
 
 /* Seccion del carrusel Start */
 .carousel-item img {
@@ -56,7 +45,6 @@ body {
 
 /* Seccion de los productos Start */
 .section-lista-productos {
-    background-color: #f8f9fa;
     padding: 50px 0;
 }
 
@@ -103,7 +91,7 @@ body {
     background-color: #074511;
     color: #fff;
     padding: 20px;
-    bottom:0;
+    bottom: 0;
     flex-shrink: 0;
     bottom: 0;
     width: 100%;
@@ -127,7 +115,7 @@ body {
     margin-top: 20px;
 }
 
-.footer .redes-sociales img{
+.footer .redes-sociales img {
     width: 30px;
     margin-right: 10px;
 }
@@ -150,10 +138,20 @@ body {
 /* ----------     Página del index End ---------------*/
 
 /* ----------     Página de ver producto Start ---------------*/
-.imagen-producto{
+
+.imagen-producto {
     width: 550px;
     height: 700px;
-  }
+}
+
+.cantidad_producto{
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.direccion_envio{
+    margin-left: 15px;
+}
 /* ----------     Página de ver producto End ---------------*/
 
 /* ----------     Página de ver lista de proteinas Start ---------------*/
@@ -178,12 +176,13 @@ body {
     padding-bottom: 20px;
 }
 
-.seccion-lista-proteinas{
+.seccion-lista-proteinas {
     padding: 85px;
 }
 
-.seccion-lista-proteinas img{
+.seccion-lista-proteinas img {
     max-width: 100px;
 }
 /* ----------     Página de ver lista de proteinas End ---------------*/
+
 

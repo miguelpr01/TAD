@@ -7,73 +7,31 @@
     <section class="header">
         <div class="container">
             <div class="row">
-            <div class="col-md-4">
+                <div class="col-md-4">
                     <a href="/">
                         <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
                     </a>
-                    @auth
-                        @if (Route::has('login'))
-                            @if (Auth::user()->rol_id == 2)
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
-                                    class="btn btn-success me-2">Productos</button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li>
-                                        <a class="dropdown-item text-success" href="{{route('producto.listaproteinas')}}">Proteína</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item text-success" href="{{route('producto.listacreatinas')}}">Creatina</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item text-success" href="{{route('producto.listaropas')}}">Ropa</a>
-                                    </li>
-                                </ul>
-                            @endif
-                        @endif
-                    @endauth
                 </div>
                 <div class="col-md-8 d-flex justify-content-end">
                     @if (Route::has('login'))
+                        @guest
+                            <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                class="btn btn-success me-2">Productos</button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item text-success"
+                                        href="{{ route('producto.listaproteinas') }}">Proteína</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-success"
+                                        href="{{ route('producto.listacreatinas') }}">Creatina</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-success" href="{{ route('producto.listaropas') }}">Ropa</a>
+                                </li>
+                            </ul>
+                        @endguest
                         @auth
-                            @if (Auth::user()->rol_id == 1)
-                                <a href="/">
-                                    <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
-                                </a>
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
-                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                    </form>
-                                    <li>
-                                        <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            @elseif (Auth::user()->rol_id == 2)
-                                <a href="/">
-                                    <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
-                                </a>
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
-                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                    </form>
-                                    <li>
-                                        <a class="dropdown-item text-success" href="{{ route('ver_pedidos') }}">Pedidos</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item text-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            @endif
-
                             @if (Auth::user()->rol_id == 1)
                                 <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">Productos</button>
@@ -86,6 +44,70 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item text-success" href="{{ route('ver_ropas') }}">Ropa</a>
+                                    </li>
+                                </ul>
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success"
+                                            href="{{ route('ver_todos_pedidos') }}">Pedidos</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            @elseif (Auth::user()->rol_id == 2)
+                                <a href="/">
+                                    <img src="{{ url('storage/images/icons/wishlist.png') }}" alt="wishlist"
+                                        class="img-fluid carrito">
+                                </a>
+                                <a href="/">
+                                    <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito"
+                                        class="img-fluid carrito">
+                                </a>
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                    class="btn btn-success me-2">Productos</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item text-success"
+                                            href="{{ route('producto.listaproteinas') }}">Proteína</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success"
+                                            href="{{ route('producto.listacreatinas') }}">Creatina</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success"
+                                            href="{{ route('producto.listaropas') }}">Ropa</a>
+                                    </li>
+                                </ul>
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
+                                    class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_pedidos') }}">Pedidos</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="#"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
                                     </li>
                                 </ul>
                             @endif
@@ -103,7 +125,7 @@
     {{-- Header End --}}
 
     {{-- Información de producto Start --}}
-    <section>
+    <section class="producto">
         @if (session('mensaje_error_autenticacion'))
             <div class="alert alert-danger" role="alert">
                 {{ session('mensaje_error_autenticacion') }}
@@ -123,13 +145,15 @@
                         <li class="list-group-item"><strong>Nombre: </strong>{{ $producto->nombre }}</li>
                         <li class="list-group-item"><strong>Precio: </strong>{{ $producto->precio }}</li>
                         @if (isset($producto->proteina))
-                        <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
-                        <li class="list-group-item"><strong>Cantidad (Kg): </strong>{{ $producto->proteina->cantidad }}</li>
+                            <li class="list-group-item"><strong>Sabor: </strong>{{ $producto->proteina->sabor }}</li>
+                            <li class="list-group-item"><strong>Cantidad (Kg):
+                                </strong>{{ $producto->proteina->cantidad }}
+                            </li>
                         @elseif (isset($producto->creatina))
-                        <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
+                            <li class="list-group-item"><strong>Opcion: </strong>{{ $producto->creatina->opcion }}</li>
                         @elseif(isset($producto->ropa))
-                        <li class="list-group-item"><strong>Talla: </strong>{{ $producto->ropa->talla }}</li>
-                        <li class="list-group-item"><strong>Color: </strong>{{ $producto->ropa->color }}</li>
+                            <li class="list-group-item"><strong>Talla: </strong>{{ $producto->ropa->talla }}</li>
+                            <li class="list-group-item"><strong>Color: </strong>{{ $producto->ropa->color }}</li>
                         @endif
 
                         @if (session('mensaje'))
@@ -143,9 +167,10 @@
                                 @csrf
                                 <input type="hidden" name="producto_id" value="{{ $producto->id }}">
 
-                                <div class="mb-3">
+                                <div class="mb-3 cantidad_producto">
                                     <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
-                                    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                        min="1" required>
                                 </div>
 
                                 @if (session('error'))
@@ -154,7 +179,7 @@
                                     </div>
                                 @endif
 
-                                <div class="mb-3">
+                                <div class="mb-3 direccion_envio">
                                     <label for="direccion_id" class="form-label"><strong>Dirección de envío:</strong></label>
                                     <select class="form-select" id="direccion_id" name="direccion_id" required>
                                         @auth
@@ -169,13 +194,14 @@
                                 <button type="submit" class="btn btn-success btn-block">Comprar</button>
                             </form>
                         @else
-                            <form action="{{ route('login') }}" class="needs-validation" novalidate>
+                            <form action="{{ route('login') }}" class="needs-validation mt-4" novalidate>
                                 @csrf
                                 <input type="hidden" name="producto_id" value="{{ $producto->id }}">
 
-                                <div class="mb-3">
+                                <div class="mb-3 cantidad_producto">
                                     <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
-                                    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
+                                    <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                        min="1" required>
                                 </div>
 
                                 @if (session('error'))
@@ -183,19 +209,6 @@
                                         {{ session('error') }}
                                     </div>
                                 @endif
-
-                                <div class="mb-3">
-                                    <label for="direccion_id" class="form-label"><strong>Dirección de envío:</strong></label>
-                                    <select class="form-select" id="direccion_id" name="direccion_id" required>
-                                        @auth
-                                            @foreach ($datos['usuario']->direccion as $direccion)
-                                                <option value="{{ $direccion->id }}">{{ $direccion->__toString() }}</option>
-                                            @endforeach
-                                        @endauth
-                                    </select>
-                                    <div class="invalid-feedback">Por favor selecciona una dirección de envío.</div>
-                                </div>
-
                                 <button type="submit" class="btn btn-success btn-block">Comprar</button>
                             </form>
                         @endauth
@@ -205,8 +218,6 @@
             </div>
         </div>
     </section>
-
-
     {{-- Información de producto End --}}
 
 @endsection
