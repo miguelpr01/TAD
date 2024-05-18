@@ -15,7 +15,7 @@
                     @auth
                         @if (Route::has('login'))
                             @if (Auth::user()->rol_id == 1)
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
@@ -29,7 +29,7 @@
                                     </li>
                                 </ul>
                             @elseif (Auth::user()->rol_id == 2)
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
@@ -95,7 +95,7 @@
                         <a href="{{ route('login') }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="btn btn-success">Registro</a>
-                            @endif
+                            @endif 
                         @endauth
                     @endif
                 </div>
