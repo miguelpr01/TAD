@@ -7,13 +7,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="" style="text-decoration: none; margin-right: 20px;">
+                    <a href="">
                         <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
                     </a>
                     @auth
                         @if (Route::has('login'))
                             @if (Auth::user()->rol_id == 1)
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
@@ -36,7 +36,7 @@
                             <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                 class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                     @csrf
                                 </form>
                                 <li>
@@ -68,7 +68,7 @@
                 {{ session('mensaje') }}
             </div>
          @endif
-        
+
         {{-- Seccion de la lista de proteinas Start --}}
         <section class="seccion-lista-proteinas mb-5">
             <div class="container">

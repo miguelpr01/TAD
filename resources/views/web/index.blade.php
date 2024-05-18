@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="" style="text-decoration: none; margin-right: 20px;">
+                    <a href="">
                         <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
                     </a>
                     @auth
@@ -53,7 +53,7 @@
                                 <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
                                     <li>
@@ -69,13 +69,13 @@
                                     </li>
                                 </ul>
                             @elseif (Auth::user()->rol_id == 2)
-                                <a href="/" style="margin-right: 20px;">
+                                <a href="/">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
                                 </a>
                                 <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
                                     <li>
@@ -95,7 +95,7 @@
                         <a href="{{ route('login') }}" class="btn btn-success me-2">Iniciar sesión</a>
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}" class="btn btn-success">Registro</a>
-                            @endif 
+                            @endif
                         @endauth
                     @endif
                 </div>

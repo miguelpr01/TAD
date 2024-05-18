@@ -8,13 +8,13 @@
         <div class="container">
             <div class="row">
             <div class="col-md-4">
-                    <a href="/" style="text-decoration: none; margin-right: 20px;">
+                    <a href="/">
                         <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
                     </a>
                     @auth
                         @if (Route::has('login'))
                             @if (Auth::user()->rol_id == 2)
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
@@ -35,13 +35,13 @@
                     @if (Route::has('login'))
                         @auth
                             @if (Auth::user()->rol_id == 1)
-                                <a href="/" style="margin-right: 20px;">
+                                <a href="/">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
                                 </a>
                                 <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
                                     <li>
@@ -54,13 +54,13 @@
                                     </li>
                                 </ul>
                             @elseif (Auth::user()->rol_id == 2)
-                                <a href="/" style="margin-right: 20px;">
+                                <a href="/">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito" class="img-fluid">
                                 </a>
                                 <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">{{ Auth::user()->nombre }}</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
                                     <li>
@@ -75,7 +75,7 @@
                             @endif
 
                             @if (Auth::user()->rol_id == 1)
-                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit" 
+                                <button id="dropdownMenuLink" data-bs-toggle="dropdown" type="submit"
                                     class="btn btn-success me-2">Productos</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
@@ -109,7 +109,7 @@
                 {{ session('mensaje_error_autenticacion') }}
             </div>
         @endif
-        
+
         @php
             $producto = $datos['producto'];
         @endphp
@@ -142,7 +142,7 @@
                             <form action="{{ route('pedido.comprar_ya') }}" class="needs-validation" novalidate>
                                 @csrf
                                 <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                                
+
                                 <div class="mb-3">
                                     <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
                                     <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
@@ -172,7 +172,7 @@
                             <form action="{{ route('login') }}" class="needs-validation" novalidate>
                                 @csrf
                                 <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                                
+
                                 <div class="mb-3">
                                     <label for="cantidad" class="form-label"><strong>Cantidad del producto</strong></label>
                                     <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
