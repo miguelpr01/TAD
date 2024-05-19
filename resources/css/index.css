@@ -135,7 +135,7 @@ body {
 }
 /* Footer End */
 
-/* ----------     Página del index End ---------------*/
+/* ----------  Página del index End  ---------------*/
 
 /* ----------     Página de ver producto Start ---------------*/
 
@@ -150,6 +150,18 @@ body {
 }
 
 .direccion_envio{
+    margin-left: 15px;
+}
+
+.boton_comprar_logado{
+    margin-left: 15px;
+}
+
+.boton_comprar_sinlogar{
+    margin-left: 15px;
+}
+
+.agregar_carrito{
     margin-left: 15px;
 }
 /* ----------     Página de ver producto End ---------------*/
@@ -184,5 +196,11 @@ body {
     max-width: 100px;
 }
 /* ----------     Página de ver lista de proteinas End ---------------*/
+
+/* -------------   Página para ver los productos en favoritos Start ---------- */
+.img-wishlist{
+    max-width: 100px;
+}
+/* -------------   Página para ver los productos en favoritos End ---------- */
 
 

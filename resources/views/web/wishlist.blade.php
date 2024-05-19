@@ -1,9 +1,8 @@
 @extends('template.main')
 
-@section('title', 'Naturfit')
+@section('title', 'Favoritos')
 
 @section('contenido')
-
     {{-- Header Start --}}
     <section class="header">
         <div class="container">
@@ -68,7 +67,7 @@
                                     </li>
                                 </ul>
                             @elseif (Auth::user()->rol_id == 2)
-                                <a href="{{route('wishlist.wishlist')}}">
+                                <a href="{{ route('wishlist.wishlist') }}">
                                     <img src="{{ url('storage/images/icons/wishlist.png') }}" alt="wishlist"
                                         class="img-fluid carrito">
                                 </a>
@@ -125,42 +124,53 @@
     </section>
     {{-- Header End --}}
 
-    {{-- Sección de la lista de pedidos Start --}}
-    <section class="section-lista-productos" id="productos">
-        <div class="container">
-            <h1 class="titulo">Lista de Pedidos</h1>
-            <div class="row">
-                <table class="table">
-                    <thead class="thead-dark">
+    {{--  Seccion de los productos en la wishlist Start --}}
+    @if (session('mensaje_eliminar_prod_wishlist'))
+        <div class="alert alert-success">
+            {{ session('mensaje_eliminar_prod_wishlist') }}
+        </div>
+    @endif
+    <section class="seccion-lista-proteinas">
+        <div class="container mt-3">
+            <h1 class="titulo">Favoritos</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Productos</th>
-                            <th>Fecha</th>
-                            <th>Estado</th>
+                            <th class="text-center">Imagen</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Precio</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (asset($pedidos))
-                            <td colspan="4" class="text-center"><strong>No tiene ningún pedido</strong></td>
-                        @else
-                            @foreach ($pedidos as $pedido)
-                                <tr>
-                                    <td>{{ $pedido->id }}</td>
-                                    <td>
-                                        @foreach ($pedido->producto as $producto)
-                                            <div>{{ $producto->nombre }}</div>
-                                        @endforeach
-                                    </td>
-                                    <td>{{ $pedido->fechaPedido }}</td>
-                                    <td>{{ $pedido->estadoPedido }}</td>
-                                </tr>
-                            @endforeach
-                        @endif
+                        @foreach ($favoritos as $favorito)
+                            <tr>
+                                <td class="text-center">
+                                    <div class="image-container">
+                                        <img src="{{ $favorito->producto->imagen }}"
+                                            alt="{{ $favorito->producto->nombre }}" class="img-thumbnail">
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center">{{ $favorito->producto->nombre }}</td>
+                                <td class="align-middle text-center">{{ $favorito->producto->precio }}€</td>
+                                <td class="align-middle text-center">
+                                    <form
+                                        action="{{ route('wishlist.eliminar_producto_whishlist', $favorito->producto->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-block">Borrar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
-    {{-- Sección de la lista de pedidos End --}}
+
+    {{--  Seccion de los productos en la wishlist End --}}
 
 @endsection

@@ -67,7 +67,7 @@
                                     </li>
                                 </ul>
                             @elseif (Auth::user()->rol_id == 2)
-                                <a href="/">
+                                <a href="{{ route('wishlist.wishlist') }}">
                                     <img src="{{ url('storage/images/icons/wishlist.png') }}" alt="wishlist"
                                         class="img-fluid carrito">
                                 </a>
@@ -135,6 +135,12 @@
         @php
             $producto = $datos['producto'];
         @endphp
+        @if (session('mensaje_agregar_fav'))
+            <div class="alert alert-success" role="alert">
+                {{ session('mensaje_agregar_fav') }}
+            </div>
+        @endif
+
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 my-3">
@@ -191,7 +197,14 @@
                                     <div class="invalid-feedback">Por favor selecciona una dirección de envío.</div>
                                 </div>
 
-                                <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                                <button type="submit" class="btn btn-success btn-block boton_comprar_logado">Comprar</button>
+                            </form>
+                            <form action="{{ route('wishlist.agregar_favorito') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_usuario" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="id_producto" value="{{ $producto->id }}">
+                                <button type="submit" class="btn btn-success btn-block mt-2 agregar_carrito">Añadir al
+                                    carrito</button>
                             </form>
                         @else
                             <form action="{{ route('login') }}" class="needs-validation mt-4" novalidate>
@@ -209,7 +222,8 @@
                                         {{ session('error') }}
                                     </div>
                                 @endif
-                                <button type="submit" class="btn btn-success btn-block">Comprar</button>
+                                <button type="submit"
+                                    class="btn btn-success btn-block boton_comprar_sinlogar">Comprar</button>
                             </form>
                         @endauth
 

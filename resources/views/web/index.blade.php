@@ -68,7 +68,7 @@
                                     </li>
                                 </ul>
                             @elseif (Auth::user()->rol_id == 2)
-                                <a href="/">
+                                <a href="{{route('wishlist.wishlist')}}">
                                     <img src="{{ url('storage/images/icons/wishlist.png') }}" alt="wishlist"
                                         class="img-fluid carrito">
                                 </a>
