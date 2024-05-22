@@ -140,6 +140,11 @@
                 {{ session('mensaje_agregar_fav') }}
             </div>
         @endif
+        @if (session('mensaje_quitar_fav'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('mensaje_quitar_fav') }}
+            </div>
+        @endif
 
         <div class="container">
             <div class="row align-items-center">
@@ -199,12 +204,17 @@
 
                                 <button type="submit" class="btn btn-success btn-block boton_comprar_logado">Comprar</button>
                             </form>
-                            <form action="{{ route('wishlist.agregar_favorito') }}" method="POST">
+                            <form action="{{ route('wishlist.agregar_favorito', $producto) }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="id_usuario" value="{{ Auth::user()->id }}">
-                                <input type="hidden" name="id_producto" value="{{ $producto->id }}">
-                                <button type="submit" class="btn btn-success btn-block mt-2 agregar_carrito">Añadir al
-                                    carrito</button>
+                                <button type="submit" class="btn btn-success btn-block mt-2 agregar_carrito">
+                                    @if (session('existe'))
+                                        {{-- Quitar de la lista de favoritos --}}
+                                        <i class="fa-solid fa-heart"></i>
+                                    @else
+                                        {{-- Añadir a la lista de favoritos --}}
+                                        <i class="fa-regular fa-heart"></i>
+                                    @endif
+                                </button>
                             </form>
                         @else
                             <form action="{{ route('login') }}" class="needs-validation mt-4" novalidate>

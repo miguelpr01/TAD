@@ -141,6 +141,7 @@
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Precio</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -154,6 +155,11 @@
                                 </td>
                                 <td class="align-middle text-center">{{ $favorito->producto->nombre }}</td>
                                 <td class="align-middle text-center">{{ $favorito->producto->precio }}€</td>
+                                <td class="align-middle text-center">
+                                    <form action="{{route('producto.seleccionarProducto', $favorito->producto->id)}}">
+                                        <button type="submit" class="btn btn-success btn-block">Ver producto</button>
+                                    </form>
+                                </td>
                                 <td class="align-middle text-center">
                                     <form
                                         action="{{ route('wishlist.eliminar_producto_whishlist', $favorito->producto->id) }}"

@@ -60,6 +60,6 @@ Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->nam
 Route::get('lista_ropas', [ProductoController::class,'listaropas'])->name('producto.listaropas');
 
 Route::get('favoritos', [WishlistController::class, 'wishlist'])->name('wishlist.wishlist');
-Route::post('agregar_favorito', [WishlistController::class, 'agregar_favorito'])->name('wishlist.agregar_favorito');
+Route::post('agregar_favorito/{producto}', [WishlistController::class, 'agregar_favorito'])->name('wishlist.agregar_favorito');
 Route::delete('delete_wishlist/{id}', [WishlistController::class, 'eliminar_producto_wishlist'])->name('wishlist.eliminar_producto_whishlist');
 

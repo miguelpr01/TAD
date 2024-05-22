@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creatina;
+use App\Models\Favorito;
 use App\Models\Producto;
 use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
@@ -10,6 +11,7 @@ use App\Models\Proteina;
 use App\Models\Ropa;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
@@ -39,6 +41,16 @@ class ProductoController extends Controller
     public function seleccionarProducto($id)
     {
         $producto = Producto::findOrFail($id);
+
+        $existe = Favorito::where('producto_id', $producto->id)
+            ->where('user_id', Auth::user()->id)
+            ->exists();
+
+        if($existe){
+            session()->flash('existe', true);
+        }else{
+            session()->flash('existe', false);
+        }
 
         if (auth()->check()) {
             $idUser = auth()->user()->getAuthIdentifier();
