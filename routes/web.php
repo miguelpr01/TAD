@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
 
-Route::get('/home', [IndexController::class, 'index'])->middleware('auth')->name('index.indexlogado');
+Route::get('/home', [IndexController::class, 'index'])->middleware('auth', 'verified')->name('index.indexlogado');
 
 Route::get('ver_proteinas', [ProteinaController::class, 'all'])->name('ver_proteinas');
 Route::get('ver_creatinas', [CreatinaController::class, 'all'])->name('ver_creatinas');
