@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WishlistController extends Controller
 {
@@ -44,5 +45,10 @@ class WishlistController extends Controller
         $producto_favorito = Favorito::where('producto_id', $id)->first();
         $producto_favorito->delete();
         return back()->with('mensaje_eliminar_prod_wishlist', 'Producto eliminado');
+    }
+
+    public function productos_favoritos(){
+        $favoritos = Favorito::select('producto_id', DB::raw('count(*) as total'))->groupBy('producto_id')->get();
+        return view('web.contadorfav', compact('favoritos'));
     }
 }

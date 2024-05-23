@@ -60,6 +60,10 @@
                                             href="{{ route('ver_todos_pedidos') }}">Pedidos</a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item text-success"
+                                            href="{{ route('wishlist.productos_favoritos') }}">Productos favoritos</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item text-success" href="#"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Logout
@@ -204,18 +208,20 @@
 
                                 <button type="submit" class="btn btn-success btn-block boton_comprar_logado">Comprar</button>
                             </form>
-                            <form action="{{ route('wishlist.agregar_favorito', $producto) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-success btn-block mt-2 agregar_carrito">
-                                    @if (session('existe'))
-                                        {{-- Quitar de la lista de favoritos --}}
-                                        <i class="fa-solid fa-heart"></i>
-                                    @else
-                                        {{-- Añadir a la lista de favoritos --}}
-                                        <i class="fa-regular fa-heart"></i>
-                                    @endif
-                                </button>
-                            </form>
+                            @if (Auth::user()->rol_id == 2)
+                                <form action="{{ route('wishlist.agregar_favorito', $producto) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-block mt-2 agregar_carrito">
+                                        @if (session('existe'))
+                                            {{-- Quitar de la lista de favoritos --}}
+                                            <i class="fa-solid fa-heart"></i>
+                                        @else
+                                            {{-- Añadir a la lista de favoritos --}}
+                                            <i class="fa-regular fa-heart"></i>
+                                        @endif
+                                    </button>
+                                </form>
+                            @endif
                         @else
                             <form action="{{ route('login') }}" class="needs-validation mt-4" novalidate>
                                 @csrf

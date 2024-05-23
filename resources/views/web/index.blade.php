@@ -57,8 +57,10 @@
                                         <a class="dropdown-item text-success" href="{{ route('index.index') }}">Home</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-success"
-                                            href="{{ route('ver_todos_pedidos') }}">Pedidos</a>
+                                        <a class="dropdown-item text-success" href="{{ route('ver_todos_pedidos') }}">Pedidos</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-success" href="{{ route('wishlist.productos_favoritos') }}">Productos favoritos</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item text-success" href="#"
