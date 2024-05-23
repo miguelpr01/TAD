@@ -6,6 +6,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProteinaController;
 use App\Http\Controllers\RopaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,3 +58,5 @@ Route::put('editar_estado/{id}', [PedidoController::class, 'modificar_estado'])-
 Route::get('lista_proteinas', [ProductoController::class,'listaproteinas'])->name('producto.listaproteinas');
 Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->name('producto.listacreatinas');
 Route::get('lista_ropas', [ProductoController::class,'listaropas'])->name('producto.listaropas');
+
+Route::get('yo', [UserController::class,'detalles'])->middleware('auth', 'verified')->name('user.detalles');
