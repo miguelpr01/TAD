@@ -3,20 +3,7 @@
 @section('titulo', 'Detalles')
 
 @section('contenido')
-    {{-- Header Start --}}
-    <section class="header">
-        <div class="container">
-            <div class="col-md-4">
-                <a href="/">
-                    <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
-                </a>
-            </div>
-            <div class="col-md-8 d-flex justify-content-end">
-            </div>
-        </div>
-        </div>
-    </section>
-    {{-- Header End --}}
+    @include('includes.header')
 
     @php
         $usuario = $vars['usuario'];
