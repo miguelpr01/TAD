@@ -42,7 +42,7 @@ class CarritoController extends Controller
             CarritoCompra::where('producto_id', $producto->id)
                 ->where('user_id', Auth::user()->id)
                 ->delete();
-            session()->flash('existe', false);
+            session()->flash('existe_carrito', false);
             return back()->with('mensaje_quitar_fav', 'El producto ha sido eliminado del carrito');
         } else {
             $carrito = new CarritoCompra;
@@ -50,7 +50,7 @@ class CarritoController extends Controller
             $carrito->producto_id = $producto->id;
             $carrito->cantProducto = 1;
             $carrito->save();
-            session()->flash('existe', true);
+            session()->flash('existe_carrito', true);
             return back()->with('mensaje_agregar_fav', 'El producto ha sido agregado al carrito');
         }
     }
