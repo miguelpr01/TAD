@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="" style="text-decoration: none; margin-right: 20px;">
+                    <a href="/" style="text-decoration: none; margin-right: 20px;">
                         <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
                     </a>
                     @auth
