@@ -79,6 +79,9 @@
                                         <a class="dropdown-item text-success" href="{{ route('user.detalles') }}">Perfil</a>
                                     </li>
                                     <li>
+                                        <a class="dropdown-item text-success" href="{{ route('wishlist.productos_favoritos') }}">Favoritos</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item text-success" href="{{ route('ver_pedidos') }}">Pedidos</a>
                                     </li>
                                     <li>
