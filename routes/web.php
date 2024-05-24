@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProteinaController;
 use App\Http\Controllers\RopaController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CarritoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,7 @@ Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->nam
 Route::get('lista_ropas', [ProductoController::class,'listaropas'])->name('producto.listaropas');
 
 Route::get('pedido/ya', [PedidoController::class, 'comprar_ya'])->name('pedido.comprar_ya');
+Route::get('pedido/carrito', [PedidoController::class, 'comprar_carrito'])->name('pedido.comprar_carrito');
 
 Route::get('ver_pedidos', [PedidoController::class, 'all'])->name('ver_pedidos');
 Route::get('ver_todos_pedidos', [PedidoController::class, 'ver_todos_pedidos'])->name('ver_todos_pedidos');
@@ -64,3 +66,9 @@ Route::post('agregar_favorito/{producto}', [WishlistController::class, 'agregar_
 Route::delete('delete_wishlist/{id}', [WishlistController::class, 'eliminar_producto_wishlist'])->name('wishlist.eliminar_producto_whishlist');
 Route::get('productos_en_favoritos', [WishlistController::class, 'productos_favoritos'])->name('wishlist.productos_favoritos');
 
+Route::get('carrito_compra', [CarritoController::class, 'carrito_compra'])->name('carrito_compra.carrito_compra');
+Route::post('agregar_producto/{producto}', [CarritoController::class, 'agregar_producto'])->name('carrito_compra.agregar_producto');
+Route::delete('eliminar_producto/{id}', [CarritoController::class, 'eliminar_producto'])->name('carrito_compra.eliminar_producto');
+Route::get('productos_carrito', [CarritoController::class, 'productos_carrito'])->name('carrito_compra.productos_carrito');
+Route::get('total', [CarritoController::class, 'total'])->name('carrito_compra.total');
+Route::put('actualizar_cantidad/{id}', [CarritoController::class, 'actualizar_cantidad'])->name('carrito_compra.actualizar_cantidad');

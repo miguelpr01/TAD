@@ -10,16 +10,16 @@ class CarritoCompra extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'producto_id',
         'cantProducto',
     ];
 
-    // Relación 1:1 inversa Carrito<-Cliente
-    public function user(){
-        return $this->belongsTo('App\Models\User');
+    public function producto(){
+        return $this->belongsTo('App\Models\Producto');
     }
 
-    // Relación 1:M Carrito->Productos
-    public function productos(){
-        return $this->hasMany('App\Models\Producto');
+    public function pedido(){
+        return $this->belongsTo('App\Models\Pedido');
     }
 }

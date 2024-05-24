@@ -75,7 +75,7 @@
                                     <img src="{{ url('storage/images/icons/wishlist.png') }}" alt="wishlist"
                                         class="img-fluid carrito">
                                 </a>
-                                <a href="/">
+                                <a href="{{route('carrito_compra.carrito_compra')}}">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito"
                                         class="img-fluid carrito">
                                 </a>
@@ -221,6 +221,18 @@
                                         @endif
                                     </button>
                                 </form>
+                                <form action="{{ route('carrito_compra.agregar_producto', $producto) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-block mt-2 agregar_carrito">
+                                        @if (session('existe'))
+                                            {{-- Quitar de la lista de favoritos --}}
+                                            <i class="fa-solid bi bi-cart3"></i>
+                                        @else
+                                            {{-- Añadir a la lista de favoritos --}}
+                                            <i class="fa-regular bi bi-cart3"></i>
+                                        @endif
+                                    </button>
+                                </form>
                             @endif
                         @else
                             <form action="{{ route('login') }}" class="needs-validation mt-4" novalidate>
@@ -238,8 +250,7 @@
                                         {{ session('error') }}
                                     </div>
                                 @endif
-                                <button type="submit"
-                                    class="btn btn-success btn-block boton_comprar_sinlogar">Comprar</button>
+                                <button type="submit" class="btn btn-success btn-block boton_comprar_sinlogar">Comprar</button>
                             </form>
                         @endauth
 
