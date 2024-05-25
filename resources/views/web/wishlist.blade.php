@@ -71,7 +71,7 @@
                                     <img src="{{ url('storage/images/icons/wishlist.png') }}" alt="wishlist"
                                         class="img-fluid carrito">
                                 </a>
-                                <a href="/">
+                                <a href="{{route('carrito_compra.carrito_compra')}}">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito"
                                         class="img-fluid carrito">
                                 </a>

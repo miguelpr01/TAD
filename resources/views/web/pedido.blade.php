@@ -72,7 +72,7 @@
                                     <img src="{{ url('storage/images/icons/wishlist.png') }}" alt="wishlist"
                                         class="img-fluid carrito">
                                 </a>
-                                <a href="/">
+                                <a href="{{route('carrito_compra.carrito_compra')}}">
                                     <img src="{{ url('storage/images/icons/carrito-de-compras.png') }}" alt="carrito"
                                         class="img-fluid carrito">
                                 </a>
@@ -140,7 +140,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (asset($pedidos))
+                        @if (empty($pedidos))
                             <td colspan="4" class="text-center"><strong>No tiene ningún pedido</strong></td>
                         @else
                             @foreach ($pedidos as $pedido)

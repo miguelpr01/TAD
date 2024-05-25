@@ -27,4 +27,8 @@ class Pedido extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+
+    public function lineacompra(){
+        return $this->hasMany('App\Models\LineaCompra');
+    }
 }

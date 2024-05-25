@@ -28,7 +28,7 @@ class Producto extends Model
     }
 
     public function carritocompra(){
-        return $this->belongsTo('App\Models\CarritoCompra');
+        return $this->hasMany('App\Models\CarritoCompra');
     }
 
     public function pedidos(){
@@ -37,5 +37,9 @@ class Producto extends Model
 
     public function favoritos(){
         return $this->hasMany('App\Models\Favorito');
+    }
+
+    public function lineacompra(){
+        return $this->hasMany('App\Models\LineaCompra');
     }
 }
