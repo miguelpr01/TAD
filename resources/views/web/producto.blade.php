@@ -132,14 +132,14 @@
     @php
         $producto = $datos['producto'];
     @endphp
-    @if (session('mensaje_agregar_fav'))
+    @if (session('mensaje_agregar'))
         <div class="alert alert-success" role="alert">
-            {{ session('mensaje_agregar_fav') }}
+            {{ session('mensaje_agregar') }}
         </div>
     @endif
-    @if (session('mensaje_quitar_fav'))
+    @if (session('mensaje_quitar'))
         <div class="alert alert-danger" role="alert">
-            {{ session('mensaje_quitar_fav') }}
+            {{ session('mensaje_quitar') }}
         </div>
     @endif
 
@@ -204,7 +204,7 @@
                             <form action="{{ route('wishlist.agregar_favorito', $producto) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-block mt-2 agregar_carrito">
-                                    @if (session('existe'))
+                                    @if (session('existe_favorito'))
                                         {{-- Quitar de la lista de favoritos --}}
                                         <i class="fa-solid fa-heart"></i>
                                     @else
@@ -221,7 +221,7 @@
                                         <i class="fa-solid fa-cart-shopping"></i>
                                     @else
                                         {{-- Añadir a la lista de favoritos --}}
-                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                        <i class="fa fa-cart-plus"></i>
                                     @endif
                                 </button>
                             </form>
