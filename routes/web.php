@@ -6,12 +6,8 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProteinaController;
 use App\Http\Controllers\RopaController;
-<<<<<<< HEAD
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CarritoController;
-=======
-use App\Http\Controllers\UserController;
->>>>>>> origin
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
 
-Route::get('/home', [IndexController::class, 'index'])->middleware('auth', 'verified')->name('index.indexlogado');
+Route::get('/home', [IndexController::class, 'index'])->middleware('auth')->name('index.indexlogado');
 
 Route::get('ver_proteinas', [ProteinaController::class, 'all'])->name('ver_proteinas');
 Route::get('ver_creatinas', [CreatinaController::class, 'all'])->name('ver_creatinas');
@@ -65,7 +61,6 @@ Route::get('lista_proteinas', [ProductoController::class,'listaproteinas'])->nam
 Route::get('lista_creatinas', [ProductoController::class,'listacreatinas'])->name('producto.listacreatinas');
 Route::get('lista_ropas', [ProductoController::class,'listaropas'])->name('producto.listaropas');
 
-<<<<<<< HEAD
 Route::get('favoritos', [WishlistController::class, 'wishlist'])->name('wishlist.wishlist');
 Route::post('agregar_favorito/{producto}', [WishlistController::class, 'agregar_favorito'])->name('wishlist.agregar_favorito');
 Route::delete('delete_wishlist/{id}', [WishlistController::class, 'eliminar_producto_wishlist'])->name('wishlist.eliminar_producto_whishlist');
@@ -77,6 +72,3 @@ Route::delete('eliminar_producto/{id}', [CarritoController::class, 'eliminar_pro
 Route::get('productos_carrito', [CarritoController::class, 'productos_carrito'])->name('carrito_compra.productos_carrito');
 Route::get('total', [CarritoController::class, 'total'])->name('carrito_compra.total');
 Route::put('actualizar_cantidad/{id}', [CarritoController::class, 'actualizar_cantidad'])->name('carrito_compra.actualizar_cantidad');
-=======
-Route::get('yo', [UserController::class,'detalles'])->middleware('auth', 'verified')->name('user.detalles');
->>>>>>> origin
