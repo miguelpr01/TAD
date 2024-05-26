@@ -3,33 +3,70 @@
 @section('titulo', 'Detalles')
 
 @section('contenido')
-    {{-- Header Start --}}
-    <section class="header">
-        <div class="container">
-            <div class="col-md-4">
-                <a href="/">
-                    <img src="{{ url('storage/images/logoWeb/logo_web.png') }}" alt="Logo" class="img-fluid">
-                </a>
-            </div>
-            <div class="col-md-8 d-flex justify-content-end">
-            </div>
-        </div>
-        </div>
-    </section>
-    {{-- Header End --}}
+    @include('includes.header')
 
     @php
         $usuario = $vars['usuario'];
         $direccion = $vars['direcc'];
+        if(isset($vars['success'])){
+            $success = $vars['success'];
+        }
     @endphp
+    <script>
+        <!--
+        function editar() {
+            document.getElementById('nombre').disabled = false;
+            document.getElementById('apellidos').disabled = false;
+            // document.getElementById('email').disabled = false;
+            document.getElementById('telefono').disabled = false;
+            document.getElementById('fechaNacimiento').disabled = false;
+            document.getElementById('calle').disabled = false;
+            document.getElementById('numero').disabled = false;
+            document.getElementById('piso').disabled = false;
+            document.getElementById('puerta').disabled = false;
+            document.getElementById('codPostal').disabled = false;
+            document.getElementById('ciudad').disabled = false;
+            document.getElementById('provincia').disabled = false;
+            document.getElementById('pais').disabled = false;
+            document.getElementById('btnEditar').textContent = 'Cancelar';
+            document.getElementById('btnEditar').setAttribute('onclick', 'cancelar()');
+            document.getElementById('btnEditar').classList.remove('btn-outline-success');
+            document.getElementById('btnEditar').classList.add('btn-outline-danger');
+            document.getElementById('btnConfirmar').style.display = 'block';
+        }
+
+        function cancelar() {
+            document.getElementById('nombre').disabled = true;
+            document.getElementById('apellidos').disabled = true;
+            // document.getElementById('email').disabled = true;
+            document.getElementById('telefono').disabled = true;
+            document.getElementById('fechaNacimiento').disabled = true;
+            document.getElementById('calle').disabled = true;
+            document.getElementById('numero').disabled = true;
+            document.getElementById('piso').disabled = true;
+            document.getElementById('puerta').disabled = true;
+            document.getElementById('codPostal').disabled = true;
+            document.getElementById('ciudad').disabled = true;
+            document.getElementById('provincia').disabled = true;
+            document.getElementById('pais').disabled = true;
+            document.getElementById('btnEditar').textContent = 'Editar';
+            document.getElementById('btnEditar').setAttribute('onclick', 'editar()');
+            document.getElementById('btnEditar').classList.remove('btn-outline-danger');
+            document.getElementById('btnEditar').classList.add('btn-outline-success');
+            document.getElementById('btnConfirmar').style.display = 'none';
+        }
+        -->
+    </script>
+
     {{-- User details Start --}}
     <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-success text-white">{{ __('Registro') }}</div>
+                    <div class="card-header bg-success text-white">Detalles</div>
+                    <div style="margin-top:9px;width:100%;"><button id="btnEditar" class="btn btn-outline-success" onclick="editar()" style="float:right;">Editar</button></div>
                     <div class="card-body">
-                        <form action="{{ route('register') }}" method="POST">
+                        <form action="{{ route('user.editar') }}" method="POST">
                             @csrf
                             <div class="card mb-3">
                                 <div class="row justify-content-center">
@@ -84,31 +121,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-
-                                            <!-- <div class="form-group row mb-3">
-                                                <label for="password"
-                                                    class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-                                                <div class="col-md-6">
-                                                    <input disabled id="password" type="password"
-                                                        class="form-control @error('password') is-invalid @enderror"
-                                                        name="password" value="{{ old('password') }}" required autocomplete="new-password">
-                                                    @error('password')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div> -->
-
-                                            <!-- <div class="form-group row mb-3">
-                                                <label for="password-confirm"
-                                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
-
-                                                <div class="col-md-6">
-                                                    <input disabled id="password-confirm" type="password" class="form-control"
-                                                        name="password_confirmation" value="{{ old('password-confirm') }}" required autocomplete="new-password">
-                                                </div>
-                                            </div> -->
 
                                             <div class="form-group row mb-3">
                                                 <label for="telefono"
@@ -277,15 +289,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="card-footer">
+                            <div id="btnConfirmar" class="card-footer" style="display:none;">
                                 <button type="submit" class="btn btn-success">
-                                    {{ __('Register') }}
+                                    Confirmar
                                 </button>
-                            </div> -->
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
+
+            @if (isset($success))
+                <div class="alert alert-success mt-3" role="alert">
+                    {{ $success }}
+                </div>
+            
+            @endif
 
 
         </div>
