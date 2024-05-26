@@ -4,40 +4,46 @@
 @section('contenido')
 @include('includes.header')
 
-<section class="section-lista-ropas" id="ropas">
-    <div class="container">
-        <h3>Editar ropa</h3>
-            <form action="{{ route('confirmar_editar_ropa' , $producto->id) }}" method="POST" id="ropa">
+    <section class="section-lista-ropas py-5 bg-light-green" id="ropas">
+        <div class="container">
+            <h3 class="mb-4 text-dark-green">Editar ropa</h3>
+            <form action="{{ route('confirmar_editar_ropa', $producto->id) }}" method="POST" id="ropa">
                 @csrf
                 @method('PUT')
-                <div class="mb-5">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" value="{{ old('nombre', $producto->nombre) }}">
-                    <br>
-                    <label for="precio">Precio:</label>
-                    <input type="number" name="precio" id="precio" value="{{ old('precio', $producto->precio) }}">
-                    <br>
-                    <label for="imagen">Imagen:</label>
-                    <input type="text" name="imagen" id="imagen" value="{{ old('imagen', $producto->imagen) }}">
-                    <br>
-                    <label for="talla">Talla:</label>
-                    <select name="talla" id="talla" value="{{ old('tallar', $producto->ropa->tallar) }}">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label text-dark-green">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control"
+                        value="{{ old('nombre', $producto->nombre) }}">
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label text-dark-green">Precio:</label>
+                    <input type="number" name="precio" id="precio" class="form-control"
+                        value="{{ old('precio', $producto->precio) }}">
+                </div>
+                <div class="mb-3">
+                    <label for="imagen" class="form-label text-dark-green">Imagen:</label>
+                    <input type="text" name="imagen" id="imagen" class="form-control"
+                        value="{{ old('imagen', $producto->imagen) }}">
+                </div>
+                <div class="mb-3">
+                    <label for="talla" class="form-label text-dark-green">Talla:</label>
+                    <select name="talla" id="talla" class="form-control"
+                        value="{{ old('tallar', $producto->ropa->tallar) }}">
                         <option value="XS">XS</option>
                         <option value="S">S</option>
                         <option value="M">M</option>
                         <option value="L">L</option>
                         <option value="XL">XL</option>
                     </select>
-                    <br>
-                    <label for="color">Color:</label>
-                    <input type="text" name="color" id="color" value="{{ old('color', $producto->ropa->color) }}">
+                </div>
+                <div class="mb-3">
+                    <label for="color" class="form-label text-dark-green">Color:</label>
+                    <input type="text" name="color" id="color" class="form-control"
+                        value="{{ old('color', $producto->ropa->color) }}">
                 </div>
                 <button type="submit" class="btn btn-success me-2">Guardar</button>
-            </form>
-            <form method="GET" action="{{ route('ver_ropas') }}" class="max-w-sm mx-auto">
-                <button type="submit" class="btn btn-success me-2">Cancelar</button>
+                <a href="{{ route('ver_proteinas') }}" class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
-    </div>
-</section>
+    </section>
 @endsection

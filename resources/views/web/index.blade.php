@@ -30,17 +30,17 @@
         <div class="container-fluid">
             <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active" data-bs-interval="5000">
                         <img src="{{ url('storage/images/carousel_index/carousel1.jpg') }}" class="d-block w-100 img-fluid"
                             alt="Imagen Carousel 1">
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ url('storage/images/carousel_index/carousel2.jpg') }}" class="d-block w-100 img-fluid"
-                            alt="Imagen Carousel 2">
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="{{ url('storage/images/carousel_index/carousel2.jpg') }}"
+                            class="d-block w-100 img-fluid" alt="Imagen Carousel 2">
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ url('storage/images/carousel_index/carousel3.jpg') }}" class="d-block w-100 img-fluid"
-                            alt="Imagen Carousel 3">
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="{{ url('storage/images/carousel_index/carousel3.jpg') }}"
+                            class="d-block w-100 img-fluid" alt="Imagen Carousel 3">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
@@ -72,7 +72,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $elemento->producto->nombre }}</h5>
                                         <p class="card-text">{{ $elemento->producto->precio }}€</p>
-                                        <form action="{{route('producto.seleccionarProducto', $elemento->producto->id)}}">
+                                        <form
+                                            action="{{ route('producto.seleccionarProducto', $elemento->producto->id) }}">
                                             <button type="submit" class="btn btn-success btn-block">Ver producto</button>
                                         </form>
                                     </div>
@@ -98,17 +99,18 @@
                     <h4>Menú</h4>
                     <ul>
                         <li><a href="#">Inicio</a></li>
-                        <li><a href="#prodEspecificos">Productos específicos</a></li>
                         <li><a href="#productos">Productos</a></li>
-                        <li><a href="#">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h4>Redes sociales</h4>
                     <ul class="redes-sociales">
-                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}" alt=""></a></li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}"  alt=""></a></li>
-                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}"
+                                    alt=""></a></li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/twitter.png') }}"
+                                    alt=""></a></li>
+                        <li><a href="#"><img src="{{ url('storage/images/icons/instagram.png') }}"
+                                    alt=""></a></li>
                     </ul>
                 </div>
             </div>

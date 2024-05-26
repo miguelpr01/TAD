@@ -15,27 +15,31 @@ class Producto extends Model
         'imagen',
     ];
 
-    // Relacion 1:1 Producto->Proteina
     public function proteina(){
         return $this->hasOne('App\Models\Proteina');
     }
 
-    // Relacion 1:1 Producto->Creatina
     public function creatina(){
         return $this->hasOne('App\Models\Creatina');
     }
 
-    // Relacion 1:1 Producto->Ropa
     public function ropa(){
         return $this->hasOne('App\Models\Ropa');
     }
 
-    // Relacion M:1 Productos<-Carrito
     public function carritocompra(){
-        return $this->belongsTo('App\Models\CarritoCompra');
+        return $this->hasMany('App\Models\CarritoCompra');
     }
 
     public function pedidos(){
         return $this->hasMany('App\Models\Pedido');
+    }
+
+    public function favoritos(){
+        return $this->hasMany('App\Models\Favorito');
+    }
+
+    public function lineacompra(){
+        return $this->hasMany('App\Models\LineaCompra');
     }
 }

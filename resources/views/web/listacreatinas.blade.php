@@ -18,6 +18,7 @@
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Precio</th>
                             <th class="text-center">Opción</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,8 +26,8 @@
                             <tr>
                                 <td>
                                     <div class="image-container text-center">
-                                        <img src="{{ $creatina->producto->imagen }}" alt="{{ $creatina->producto->nombre }}"
-                                            class="img-thumbnail" >
+                                        <img src="{{ $creatina->producto->imagen }}"
+                                            alt="{{ $creatina->producto->nombre }}" class="img-thumbnail">
                                     </div>
                                 </td>
                                 <td class="align-middle text-center">{{ $creatina->producto->nombre }}</td>

@@ -19,6 +19,7 @@
                             <th class="text-center">Precio</th>
                             <th class="text-center">Sabor</th>
                             <th class="text-center">Cantidad</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,8 +27,8 @@
                             <tr>
                                 <td class="align-middle text-center">
                                     <div class="image-container">
-                                        <img src="{{ $proteina->producto->imagen }}" alt="{{ $proteina->producto->nombre }}"
-                                            class="img-thumbnail">
+                                        <img src="{{ $proteina->producto->imagen }}"
+                                            alt="{{ $proteina->producto->nombre }}" class="img-thumbnail">
                                     </div>
                                 </td>
                                 <td class="align-middle text-center">{{ $proteina->producto->nombre }}</td>

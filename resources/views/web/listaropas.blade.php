@@ -19,6 +19,7 @@
                             <th class="text-center">Precio</th>
                             <th class="text-center">Talla</th>
                             <th class="text-center">Color</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,7 +28,7 @@
                                 <td>
                                     <div class="image-container text-center">
                                         <img src="{{ $ropa->producto->imagen }}" alt="{{ $ropa->producto->nombre }}"
-                                            class="img-thumbnail" >
+                                            class="img-thumbnail">
                                     </div>
                                 </td>
                                 <td class="align-middle text-center">{{ $ropa->producto->nombre }}</td>

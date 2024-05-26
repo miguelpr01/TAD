@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarritoCompra;
 use App\Models\Creatina;
+use App\Models\Favorito;
 use App\Models\Producto;
 use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
@@ -10,21 +12,17 @@ use App\Models\Proteina;
 use App\Models\Ropa;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
     public function create($string)
     {
-        if ($string == "proteina")
-        {
+        if ($string == "proteina") {
             return view('productos.proteina.crear_proteina');
-        }
-        elseif ($string == "creatina")
-        {
+        } elseif ($string == "creatina") {
             return view('productos.creatina.crear_creatina');
-        }
-        elseif ($string == "ropa")
-        {
+        } elseif ($string == "ropa") {
             return view('productos.ropa.crear_ropa');
         }
     }
@@ -39,6 +37,16 @@ class ProductoController extends Controller
     public function seleccionarProducto($id)
     {
         $producto = Producto::findOrFail($id);
+
+        $existe = Favorito::where('producto_id', $producto->id)
+            ->where('user_id', Auth::user()->id)
+            ->exists();
+
+        if($existe){
+            session()->flash('existe', true);
+        }else{
+            session()->flash('existe', false);
+        }
 
         if (auth()->check()) {
             $idUser = auth()->user()->getAuthIdentifier();
@@ -56,25 +64,29 @@ class ProductoController extends Controller
         return view('web.producto', compact('datos'));
     }
 
-    public function comprobarautenticacion(Request $request){
-         if(auth()->check()){
-           return $request->cantidad;
-         }else{
-             return back()->with("mensaje_error_autenticacion","El usuario no esta logado");
-         }
+    public function comprobarautenticacion(Request $request)
+    {
+        if (auth()->check()) {
+            return $request->cantidad;
+        } else {
+            return back()->with("mensaje_error_autenticacion", "El usuario no esta logado");
+        }
     }
 
-    public function listaproteinas(){
+    public function listaproteinas()
+    {
         $proteinas = Proteina::all();
         return view('web.listaproteinas', compact('proteinas'));
     }
 
-    public function listacreatinas(){
+    public function listacreatinas()
+    {
         $creatinas = Creatina::all();
         return view('web.listacreatinas', compact('creatinas'));
     }
 
-    public function listaropas(){
+    public function listaropas()
+    {
         $ropas = Ropa::all();
         return view('web.listaropas', compact('ropas'));
     }
