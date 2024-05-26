@@ -179,9 +179,7 @@
             </table>
         </div>
     </div>
-</section>
-
-<form action="{{ route('pedido.comprar_carrito') }}" method="GET">
+    <form action="{{ route('pedido.comprar_carrito') }}" method="GET">
     @csrf
     <div class="mb-3 direccion_envio">
         <label for="direccion_id" class="form-label"><strong>Dirección de envío:</strong></label>
@@ -194,10 +192,9 @@
         </select>
         <div class="invalid-feedback">Por favor selecciona una dirección de envío.</div>
     </div>
-
-    <button type="submit" class="btn btn-success btn-block" {{ $carritos->isEmpty() ? 'disabled' : '' }}>Comprar</button>
+    <button type="submit" class="btn btn-success btn-block comprar-carrito" {{ $carritos->isEmpty() ? 'disabled' : '' }}>Comprar</button>
 </form>
-
+</section>
 {{-- Seccion de los productos en el carrito --}}
 
 @endsection

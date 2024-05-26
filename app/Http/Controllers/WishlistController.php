@@ -19,23 +19,23 @@ class WishlistController extends Controller
 
     public function agregar_favorito(Producto $producto)
     {
-        $existe = Favorito::where('producto_id', $producto->id)
+        $existe_favorito = Favorito::where('producto_id', $producto->id)
             ->where('user_id', Auth::user()->id)
             ->exists();
 
-        if ($existe) {
+        if ($existe_favorito) {
             Favorito::where('producto_id', $producto->id)
                 ->where('user_id', Auth::user()->id)
                 ->delete();
-            session()->flash('existe', false);
-            return back()->with('mensaje_quitar_fav', 'El producto ha sido eliminado de favoritos');
+            session()->flash('existe_favorito', false);
+            return back()->with('mensaje_quitar', 'El producto ha sido eliminado de favoritos');
         } else {
             $favorito = new Favorito;
             $favorito->user_id = Auth::user()->id;
             $favorito->producto_id = $producto->id;
             $favorito->save();
-            session()->flash('existe', true);
-            return back()->with('mensaje_agregar_fav', 'El producto ha sido agregado a favoritos');
+            session()->flash('existe_favorito', true);
+            return back()->with('mensaje_agregar', 'El producto ha sido agregado a favoritos');
         }
     }
 

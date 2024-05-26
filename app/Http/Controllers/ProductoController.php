@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarritoCompra;
 use App\Models\Creatina;
 use App\Models\Favorito;
 use App\Models\Producto;
@@ -37,16 +38,14 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
 
-        if (auth()->check()) {
-            $existe = Favorito::where('producto_id', $producto->id)
-                ->where('user_id', Auth::user()->id)
-                ->exists();
+        $existe = Favorito::where('producto_id', $producto->id)
+            ->where('user_id', Auth::user()->id)
+            ->exists();
 
-            if ($existe) {
-                session()->flash('existe', true);
-            } else {
-                session()->flash('existe', false);
-            }
+        if($existe){
+            session()->flash('existe', true);
+        }else{
+            session()->flash('existe', false);
         }
 
         if (auth()->check()) {

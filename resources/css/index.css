@@ -198,9 +198,13 @@ body {
 /* ----------     Página de ver lista de proteinas End ---------------*/
 
 /* -------------   Página para ver los productos en favoritos Start ---------- */
-.img-wishlist{
+.img-wishlist {
     max-width: 100px;
 }
 /* -------------   Página para ver los productos en favoritos End ---------- */
 
-
+/* -------------   Página de carrito Start ---------- */
+.comprar-carrito {
+    margin-left: 15px;
+}
+/* -------------   Página de carrito End ---------- */

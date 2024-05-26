@@ -34,16 +34,16 @@ class CarritoController extends Controller
 
     public function agregar_producto(Producto $producto)
     {
-        $existe = CarritoCompra::where('producto_id', $producto->id)
+        $existe_carrito = CarritoCompra::where('producto_id', $producto->id)
             ->where('user_id', Auth::user()->id)
             ->exists();
 
-        if ($existe) {
+        if ($existe_carrito) {
             CarritoCompra::where('producto_id', $producto->id)
                 ->where('user_id', Auth::user()->id)
                 ->delete();
             session()->flash('existe_carrito', false);
-            return back()->with('mensaje_quitar_fav', 'El producto ha sido eliminado del carrito');
+            return back()->with('mensaje_quitar', 'El producto ha sido eliminado del carrito');
         } else {
             $carrito = new CarritoCompra;
             $carrito->user_id = Auth::user()->id;
@@ -51,7 +51,7 @@ class CarritoController extends Controller
             $carrito->cantProducto = 1;
             $carrito->save();
             session()->flash('existe_carrito', true);
-            return back()->with('mensaje_agregar_fav', 'El producto ha sido agregado al carrito');
+            return back()->with('mensaje_agregar', 'El producto ha sido agregado al carrito');
         }
     }
 
@@ -61,12 +61,6 @@ class CarritoController extends Controller
         $producto = CarritoCompra::where('producto_id', $id)->first();
         $producto->delete();
         return back()->with('mensaje_eliminar_prod_wishlist', 'Producto eliminado');
-    }
-
-    public function productos_carrito()
-    {
-        $productos = CarritoCompra::select('producto_id', DB::raw('count(*) as total'))->groupBy('producto_id')->get();
-        return view('web.contadorfav', compact('productos'));
     }
 
     public function actualizar_cantidad(Request $request, $id)
