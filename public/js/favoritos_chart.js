@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById("chartData").dataset.values
                     ),
                     backgroundColor: "#90EE90",
-                    borderColor: "#90EE90",
+                    borderColor: "#90EE90", 
                     borderWidth: 1,
                 },
             ],
