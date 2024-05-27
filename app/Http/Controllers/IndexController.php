@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creatina;
-use App\Models\Producto;
 use App\Models\Proteina;
 use App\Models\Ropa;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Session\Session;
 
 class IndexController extends Controller
 {
@@ -18,5 +16,13 @@ class IndexController extends Controller
         $productos = [[$proteinas], [$creatinas], [$ropas]];
 
         return view("web.index", compact("productos"));
+    }
+    
+    public function changeLocale($locale) {
+        if (in_array($locale, ['es', 'en'])) { // Ensure this includes all your supported locales
+            session()->put('locale', $locale);
+            app()->setLocale($locale);
+        }
+        return redirect()->back();
     }
 }

@@ -84,7 +84,7 @@ class PedidoController extends Controller
         $user->save();
         $pedido->save();
 
-        return back()->with('mensaje', 'Pedido realizado exitosamente.');
+        return back()->with('mensaje_pedido_realizado', 'Pedido realizado exitosamente.');
     }
 
 

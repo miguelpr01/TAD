@@ -34,6 +34,11 @@ body {
     background-color: #23863b;
     border-color: #28a745;
 }
+
+.sinpunto {
+    list-style-type: none;
+
+}
 /* Seccion del Header End */
 
 /* Seccion del carrusel Start */
@@ -208,3 +213,19 @@ body {
     margin-left: 15px;
 }
 /* -------------   Página de carrito End ---------- */
+
+/* -------------   Página de userDetails Start ---------- */
+
+.div_padre {
+    margin-top:9px;
+    width:100%;
+}
+
+.float-right {
+    float:right;
+}
+
+.fav-user {
+    margin-right: 5px;
+}
+/* -------------   Página de userDetails End ---------- */
