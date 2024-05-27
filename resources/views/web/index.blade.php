@@ -42,7 +42,7 @@
     {{-- Sección de la lista de productos Start --}}
     <section class="section-lista-productos" id="productos">
         <div class="container">
-            <h1 class="text-center mb-5">Algunos productos</h1>
+            <h1 class="text-center mb-5">{{__('messages.algunos_productos')}}</h1>
             <div class="row">
                 @foreach ($productos as $categoria)
                     @foreach ($categoria as $producto)
@@ -55,7 +55,7 @@
                                         <p class="card-text">{{ $elemento->producto->precio }}€</p>
                                         <form
                                             action="{{ route('producto.seleccionarProducto', $elemento->producto->id) }}">
-                                            <button type="submit" class="btn btn-success btn-block">Ver producto</button>
+                                            <button type="submit" class="btn btn-success btn-block">{{__('messages.ver_producto')}}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -73,18 +73,17 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-4">
-                    <p>Somos una tienda online de productos deportivos y de suplementación. Ofrecemos una amplia variedad de
-                        artículos para ayudarte a alcanzar tus objetivos deportivos.</p>
+                    <p>{{__('messages.parrafo1')}}</p>
                 </div>
                 <div class="col-md-4">
-                    <h4>Menú</h4>
+                    <h4>{{__('messages.menu')}}</h4>
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#">{{__('messages.home')}}</a></li>
+                        <li><a href="#productos"></a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h4>Redes sociales</h4>
+                    <h4>{{__('messages.redes_sociales')}}</h4>
                     <ul class="redes-sociales">
                         <li><a href="#"><img src="{{ url('storage/images/icons/facebook.png') }}"
                                     alt=""></a></li>
@@ -97,7 +96,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center copyright">
-                    <p>&copy; 2024 Todos los derechos reservados.</p>
+                    <p>&copy; {{__('messages.copyright')}}</p>
                 </div>
             </div>
         </div>

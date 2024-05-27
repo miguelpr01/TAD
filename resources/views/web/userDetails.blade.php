@@ -64,7 +64,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-success text-white">Detalles</div>
-                    <div style="margin-top:9px;width:100%;"><button id="btnEditar" class="btn btn-outline-success" onclick="editar()" style="float:right;">Editar</button></div>
+                    <div class="div_padre">
+                        <button id="btnEditar" class="btn btn-outline-success float-right" onclick="editar()">Editar</button>
+                        <a class="float-right fav-user" href="{{route('wishlist.wishlist')}}">
+                                    <button class="btn btn-outline-success">Favoritos</button>
+                                </a>
+                    </div>
                     <div class="card-body">
                         <form action="{{ route('user.editar') }}" method="POST">
                             @csrf

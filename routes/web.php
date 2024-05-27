@@ -76,3 +76,5 @@ Route::put('actualizar_cantidad/{id}', [CarritoController::class, 'actualizar_ca
 
 Route::get('yo', [UserController::class,'detalles'])->middleware('auth', 'verified')->name('user.detalles');
 Route::post('editar_usuario', [UserController::class,'editar'])->middleware('auth', 'verified')->name('user.editar');
+
+Route::get('cambio_local/{locale}', [IndexController::class, 'changeLocale'])->name('index.changeLocale');
