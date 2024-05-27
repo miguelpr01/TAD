@@ -5,11 +5,32 @@
 @section('contenido')
     @include('includes.header')
 
-    {{-- Información de producto Start --}}
-    <section>
-        @if (session('mensaje_error_autenticacion'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('mensaje_error_autenticacion') }}
+{{-- Información de producto Start --}}
+<section class="producto">
+    @if (session('mensaje_error_autenticacion'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('mensaje_error_autenticacion') }}
+        </div>
+    @endif
+
+    @php
+        $producto = $datos['producto'];
+    @endphp
+    @if (session('mensaje_agregar'))
+        <div class="alert alert-success" role="alert">
+            {{ session('mensaje_agregar') }}
+        </div>
+    @endif
+    @if (session('mensaje_quitar'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('mensaje_quitar') }}
+        </div>
+    @endif
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 my-3">
+                <img src="{{ $producto->imagen }}" alt="Imagen del producto" class="imagen-producto img-fluid">
             </div>
             <div class="col-md-6">
                 <ul class="list-group list-group-flush">
