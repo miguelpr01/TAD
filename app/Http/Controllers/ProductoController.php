@@ -38,14 +38,26 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
 
-        $existe = Favorito::where('producto_id', $producto->id)
-            ->where('user_id', Auth::user()->id)
-            ->exists();
+        if (auth()->check()) {
+            $existe_favorito = Favorito::where('producto_id', $producto->id)
+                ->where('user_id', Auth::user()->id)
+                ->exists();
 
-        if($existe){
-            session()->flash('existe', true);
-        }else{
-            session()->flash('existe', false);
+            $existe_carrito = CarritoCompra::where('producto_id', $producto->id)
+                ->where('user_id', Auth::user()->id)
+                ->exists();
+
+            if ($existe_favorito) {
+                session()->flash('existe_favorito', true);
+            } else {
+                session()->flash('existe_favorito', false);
+            }
+
+            if ($existe_carrito) {
+                session()->flash('existe_carrito', true);
+            } else {
+                session()->flash('existe_carrito', false);
+            }
         }
 
         if (auth()->check()) {

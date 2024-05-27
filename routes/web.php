@@ -8,6 +8,7 @@ use App\Http\Controllers\ProteinaController;
 use App\Http\Controllers\RopaController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,3 +73,8 @@ Route::delete('eliminar_producto/{id}', [CarritoController::class, 'eliminar_pro
 Route::get('productos_carrito', [CarritoController::class, 'productos_carrito'])->name('carrito_compra.productos_carrito');
 Route::get('total', [CarritoController::class, 'total'])->name('carrito_compra.total');
 Route::put('actualizar_cantidad/{id}', [CarritoController::class, 'actualizar_cantidad'])->name('carrito_compra.actualizar_cantidad');
+
+Route::get('yo', [UserController::class,'detalles'])->middleware('auth', 'verified')->name('user.detalles');
+Route::post('editar_usuario', [UserController::class,'editar'])->middleware('auth', 'verified')->name('user.editar');
+
+Route::get('cambio_local/{locale}', [IndexController::class, 'changeLocale'])->name('index.changeLocale');
