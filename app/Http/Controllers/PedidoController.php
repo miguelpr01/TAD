@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InfoCompra;
+use App\Mail\InfoCompra_carrito;
 use App\Models\CarritoCompra;
 use App\Models\Direccione;
 use App\Models\LineaCompra;
@@ -84,6 +85,8 @@ class PedidoController extends Controller
         $user->save();
         $pedido->save();
 
+        Mail::to($user->email)->send(new InfoCompra_carrito($user->nombre, $carritos));
+        
         return back()->with('mensaje_pedido_realizado', 'Pedido realizado exitosamente.');
     }
 
