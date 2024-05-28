@@ -51,6 +51,6 @@ class UserController extends Controller
             'success' => $success
         ];
         
-        return view('web.userDetails', compact('vars'));
+        return back()->with('vars');
     }
 }

@@ -7,10 +7,11 @@
     <section class="section-lista-proteinas" id="proteinas">
         <div class="container">
             @if (session('mensaje'))
-                <div class="message-created-note alert alert-info" role="alert">
+                <div class="message-created-note alert alert-success" role="alert">
                     {{ session('mensaje') }}
                 </div>
             @endif
+
 
             {{-- Seccion de la lista de proteinas Start --}}
             <section class="seccion-lista-proteinas mb-5">
