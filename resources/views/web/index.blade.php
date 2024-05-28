@@ -79,7 +79,7 @@
                     <h4>{{__('messages.menu')}}</h4>
                     <ul>
                         <li><a href="#">{{__('messages.home')}}</a></li>
-                        <li><a href="#productos"></a></li>
+                        <li><a href="#productos">{{__('messages.productos')}}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
