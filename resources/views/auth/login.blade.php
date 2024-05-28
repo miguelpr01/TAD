@@ -83,12 +83,16 @@
                                     <button type="submit" class="btn btn-success">
                                         {{ __('Iniciar sesión') }}
                                     </button>
+                                    <br>
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('¿Olvidaste la contraseña?') }}
                                         </a>
                                     @endif
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                            {{ __('¿No estás registrado?') }}
+                                    </a>
                                 </div>
                             </div>
                         </form>
