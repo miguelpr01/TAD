@@ -67,8 +67,29 @@
                     <div class="div_padre">
                         <button id="btnEditar" class="btn btn-outline-success float-right" onclick="editar()">Editar</button>
                         <a class="float-right fav-user" href="{{route('wishlist.wishlist')}}">
-                                    <button class="btn btn-outline-success">Favoritos</button>
+                            <button class="btn btn-outline-success">Favoritos</button>
+                        </a>
+
+                        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{__('messages.idioma')}}
+                            <i class="fa-solid fa-language"></i>
+                        </button>
+                        <ul class="dropdown-menu sinpunto">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('index.changeLocale', ['locale' => 'es']) }}">
+                                    <i class="flag-icon flag-icon-es"></i>
+                                    <span>Español</span>
                                 </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('index.changeLocale', ['locale' => 'en']) }}">
+                                    <i class="flag-icon flag-icon-gb"></i>
+                                    <span>English</span>
+                                </a>
+                            </li>
+                        </ul>
+
                     </div>
                     <div class="card-body">
                         <form action="{{ route('user.editar') }}" method="POST">
@@ -301,7 +322,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </>
             </div>
 
             @if (isset($success))
