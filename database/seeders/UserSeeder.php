@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
         $fechaNacimiento1 = Carbon::now()->subYears(rand(18,65))->subDays(rand(0, 365));
         $fechaNacFormateada1 = $fechaNacimiento1->format("Y-m-d H:i:s");
         User::create([
-            'nombre'=>'Javier',
-            'apellidos'=>'Sánchez Martínez',
+            'nombre'=>'Admin',
+            'apellidos'=>'Admin',
             'email'=> 'admin1@email.com',
             'password'=>bcrypt('admin'),
             'telefono'=>'688945783',
