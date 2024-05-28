@@ -17,5 +17,6 @@ return [
     'copyright' => '2024 Todos los derechos reservados.',
     'redes_sociales' => 'Redes Sociales',
     'fav' => 'Favoritos',
-    'perfil' => 'Perfil'
+    'perfil' => 'Perfil',
+    'idioma' => 'Idioma',
 ];

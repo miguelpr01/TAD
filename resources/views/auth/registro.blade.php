@@ -275,7 +275,7 @@
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success">
-                                    {{ __('Register') }}
+                                    {{ __('Registro') }}
                                 </button>
                             </div>
                         </form>
