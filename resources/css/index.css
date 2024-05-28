@@ -37,8 +37,12 @@ body {
 
 .sinpunto {
     list-style-type: none;
-
 }
+
+.margen_idiomas {
+    margin-left: 7.5px;
+}
+
 /* Seccion del Header End */
 
 /* Seccion del carrusel Start */
